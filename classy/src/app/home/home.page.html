@@ -7,9 +7,9 @@
 </ion-header>
 
 <ion-content>
-  <input type="file" accept="image/*" capture="camera" />
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <video #video autoplay></video>
+  <ion-button (click)="captureVideoButtonClick()">capture video</ion-button>
+  <img #image src="">
+  <ion-button (click)="screenShotButtonClick()" [disabled]="screenShotButtonDisabled">screen shot</ion-button>
+  <canvas #canvas style="display:none;"></canvas>
 </ion-content>
