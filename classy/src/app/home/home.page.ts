@@ -1,6 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import * as Tesseract from 'tesseract.js';
-import {NgProgress} from '@ngx-progressbar/core';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 @Component({
@@ -25,6 +23,10 @@ export class HomePage implements OnInit {
     @ViewChild('canvas')
     canvas;
 
+    constructor() {
+
+    }
+
     ngOnInit(): void {
         console.log(this.video);
         console.log(this.image);
@@ -35,15 +37,17 @@ export class HomePage implements OnInit {
         navigator.mediaDevices.getUserMedia(this.constraints)
             .then((stream) => {
                 this.handleSuccess(stream);
-            }).catch(this.handleError);
+            }).catch((error) => {
+            this.handleError(error);
+        });
     };
 
     public screenShotButtonClick() {
         this.canvas.nativeElement.width = this.video.nativeElement.videoWidth;
         this.canvas.nativeElement.height = this.video.nativeElement.videoHeight;
         this.canvas.nativeElement.getContext('2d').drawImage(this.video.nativeElement, 0, 0);
-        // Other browsers will fall back to image/png
-        this.image.nativeElement.src = this.canvas.nativeElement.toDataURL('image/webp');
+        this.image.nativeElement.src = this.canvas.nativeElement.toDataURL('image/png');
+        this.recognizeImage(this.image.nativeElement.src);
     };
 
     public handleSuccess(stream) {
@@ -51,8 +55,13 @@ export class HomePage implements OnInit {
         this.video.nativeElement.srcObject = stream;
     }
 
-    public handleError(err) {
-        console.error(err);
+    public handleError(error) {
+        console.error(error);
+    }
+
+    recognizeImage(image) {
+        console.log(image);
+        // todo
     }
 
 }
