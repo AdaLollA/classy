@@ -14,7 +14,8 @@ export interface IRoom {
 export interface ITongueStyle {
     boxShadow: string,
     borderRadius: string,
-    top: string
+    top: string,
+    transition: string
 }
 
 @Component({
@@ -35,7 +36,8 @@ export class TongueComponent implements OnInit {
     public tongueStyle: ITongueStyle = {
         borderRadius: '20px 20px 0px 0px',
         boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.1)',
-        top: '70vh'
+        top: '70vh',
+        transition: ''
     };
 
     public defaultMode: boolean = true;
@@ -67,14 +69,6 @@ export class TongueComponent implements OnInit {
     }
 
     public dragRelease(event) {
-        // todo commented code in this function is for snapping to top / bottom
-        // event.source._dragRef.reset();
-        /*
-        console.log(event.source._dragRef);
-        event.source._dragRef._activeTransform = {x: 0, y: 0};
-        event.source._dragRef._passiveTransform = {x: 0, y: 0};
-        */
-
         if (this.prevPosition < this.tongue.el.getBoundingClientRect().top) {
             // move down
             console.log('down');
@@ -89,6 +83,7 @@ export class TongueComponent implements OnInit {
 
     public dragStart() {
         this.prevPosition = this.tongue.el.getBoundingClientRect().top;
+        this.tongueStyle.transition = '';
     }
 
     public tongueModeOpaque(drag: DragRef) {
@@ -97,6 +92,7 @@ export class TongueComponent implements OnInit {
         this.tongueStyle.boxShadow = '';
         this.tongueStyle.borderRadius = '';
         this.defaultMode = false;
+        this.tongueStyle.transition = 'all 0.2s linear';
         this.tongueStyle.top = '0';
     }
 
@@ -106,6 +102,7 @@ export class TongueComponent implements OnInit {
         this.tongueStyle.boxShadow = '0px -5px 10px rgba(0, 0, 0, 0.1)';
         this.tongueStyle.borderRadius = '20px 20px 0px 0px';
         this.defaultMode = true;
+        this.tongueStyle.transition = 'all 0.2s linear';
         this.tongueStyle.top = '70vh';
     }
 

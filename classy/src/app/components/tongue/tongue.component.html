@@ -4,7 +4,7 @@
     <ion-row #tongue class="tongue" justify-content-start align-items-start cdkDragLockAxis="y"
              cdkDragBoundary=".tongue-container" cdkDrag
              [ngStyle]="{'border-radius': tongueStyle.borderRadius,
-             'box-shadow': tongueStyle.boxShadow, 'top': tongueStyle.top}"
+             'box-shadow': tongueStyle.boxShadow, 'top': tongueStyle.top, 'transition': tongueStyle.transition}"
              (cdkDragReleased)="dragRelease($event)" (cdkDragStarted)="dragStart()">
         <ion-row class="handle-container" justify-content-center cdkDragHandle>
             <div class="handle"></div>
