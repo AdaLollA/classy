@@ -29,7 +29,7 @@ export class TongueComponent implements OnInit {
     this.courses = [
       {title: 'Course A'},
       {title: 'Course B'},
-      {title: 'Course C'}
+      // {title: 'Course C'}
     ]
   }
 

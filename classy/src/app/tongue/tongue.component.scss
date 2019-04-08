@@ -17,6 +17,7 @@
 
 .handle-container {
   height: 3vh;
+  width: 100%;
 }
 
 .handle {
@@ -25,4 +26,9 @@
   width: 50px;
   margin-top: 10px;
   border-radius: 10px;
+}
+
+.card-container {
+  width: 100%;
+  padding-left: 1%;
 }
