@@ -5,7 +5,7 @@
              cdkDragBoundary=".tongue-container" cdkDrag
              [ngStyle]="{'border-radius': tongueStyle.borderRadius,
              'box-shadow': tongueStyle.boxShadow}"
-             (cdkDragEnded)="dragEnd($event)" (cdkDragStarted)="dragStart()">
+             (cdkDragReleased)="dragRelease($event)" (cdkDragStarted)="dragStart()">
         <ion-row class="handle-container" justify-content-center cdkDragHandle>
             <div class="handle"></div>
         </ion-row>

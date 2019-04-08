@@ -63,7 +63,7 @@ export class TongueComponent implements OnInit {
         ];
     }
 
-    public dragEnd(event) {
+    public dragRelease(event) {
         // todo commented code in this function is for snapping to top / bottom
         // event.source._dragRef.reset();
 
@@ -114,13 +114,13 @@ export class TongueComponent implements OnInit {
         if (searchStr && searchStr.trim() != '') {
             this.visibleCourses = this.courses.filter((item) => {
                 return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
-            })
+            });
         }
 
         if (searchStr && searchStr.trim() != '') {
             this.visibleRooms = this.rooms.filter((item) => {
                 return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
-            })
+            });
         }
     }
 }
