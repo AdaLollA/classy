@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {DragRef} from '@angular/cdk/drag-drop';
 
 // todo extend interface
 // todo relocate interface code
@@ -12,7 +13,8 @@ export interface IRoom {
 
 export interface ITongueStyle {
     boxShadow: string,
-    borderRadius: string
+    borderRadius: string,
+    top: string
 }
 
 @Component({
@@ -32,7 +34,8 @@ export class TongueComponent implements OnInit {
 
     public tongueStyle: ITongueStyle = {
         borderRadius: '20px 20px 0px 0px',
-        boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.1)'
+        boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.1)',
+        top: '70vh'
     };
 
     public defaultMode: boolean = true;
@@ -66,43 +69,44 @@ export class TongueComponent implements OnInit {
     public dragRelease(event) {
         // todo commented code in this function is for snapping to top / bottom
         // event.source._dragRef.reset();
+        /*
+        console.log(event.source._dragRef);
+        event.source._dragRef._activeTransform = {x: 0, y: 0};
+        event.source._dragRef._passiveTransform = {x: 0, y: 0};
+        */
 
         if (this.prevPosition < this.tongue.el.getBoundingClientRect().top) {
             // move down
             console.log('down');
-            this.tongueModeDefault();
-            /*
-                  event.source._activeTransform = {x: 0, y: 0};
-                  event.source._passiveTransform = {x: 0, y: 0};
-                   */
+            this.tongueModeDefault(event.source._dragRef);
+
         } else if (this.prevPosition > this.tongue.el.getBoundingClientRect().top) {
             // move up
             console.log('up');
-            this.tongueModeOpaque();
-            /*
-            event.source._activeTransform = {x: 0, y: -568};
-            event.source._passiveTransform = {x: 0, y: -568};
-             */
+            this.tongueModeOpaque(event.source._dragRef);
         }
-        console.log(this.tongue.el.style);
     }
 
     public dragStart() {
         this.prevPosition = this.tongue.el.getBoundingClientRect().top;
     }
 
-    public tongueModeOpaque() {
+    public tongueModeOpaque(drag: DragRef) {
+        drag.reset();
         this.search.el.style.background = 'white';
         this.tongueStyle.boxShadow = '';
         this.tongueStyle.borderRadius = '';
         this.defaultMode = false;
+        this.tongueStyle.top = '0';
     }
 
-    public tongueModeDefault() {
+    public tongueModeDefault(drag: DragRef) {
+        drag.reset();
         this.search.el.style.background = 'transparent';
         this.tongueStyle.boxShadow = '0px -5px 10px rgba(0, 0, 0, 0.1)';
         this.tongueStyle.borderRadius = '20px 20px 0px 0px';
         this.defaultMode = true;
+        this.tongueStyle.top = '70vh';
     }
 
     searchFor(event) {
