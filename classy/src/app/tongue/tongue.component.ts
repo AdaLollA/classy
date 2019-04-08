@@ -9,12 +9,27 @@ export class TongueComponent implements OnInit {
   @ViewChild('tongue')
   tongue;
 
+  private initPosition: number;
+  private prevPosition: number;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.initPosition = this.tongue.el.getBoundingClientRect().top;
+  }
 
-  public drag(event) {
-    console.log(event);
+  public dragDrop() {
+    if (this.prevPosition < this.tongue.el.getBoundingClientRect().top) {
+      // move down
+      console.log('down')
+    } else {
+      // move up
+      console.log('up')
+    }
+  }
+
+  public dragStart() {
+    this.prevPosition = this.tongue.el.getBoundingClientRect().top;
   }
 
 }

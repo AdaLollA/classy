@@ -1,5 +1,6 @@
-<ion-row #tongue class="tongue" justify-content-around cdkDragLockAxis="y" cdkDragBoundary="ion-content" cdkDrag>
-    <ion-row col-12 justify-content-center cdkDragHandle>
+<ion-row #tongue class="tongue" justify-content-around cdkDragLockAxis="y" cdkDragBoundary="ion-content" cdkDrag
+         (cdkDragEnded)="dragDrop()" (cdkDragStarted)="dragStart()">
+    <ion-row class="handle-container" col-12 justify-content-center cdkDragHandle>
         <div col-12 class="handle"></div>
     </ion-row>
 </ion-row>
