@@ -10,6 +10,34 @@
             <div class="handle"></div>
         </ion-row>
 
+        <div class="result-container" [ngStyle]="{'height': resultHeight}">
+            <!-- course search results -->
+            <ion-list-header>
+                <ion-label>Courses</ion-label>
+            </ion-list-header>
+
+            <div class="scrollmenu">
+                <ion-card class="result-card" *ngFor="let course of visibleCourses">
+                    <ion-row class="full-size" justify-content-center align-items-center>
+                        <p>{{ course.label }}</p>
+                    </ion-row>
+                </ion-card>
+            </div>
+
+            <!-- room search results -->
+            <ion-list-header>
+                <ion-label>Rooms</ion-label>
+            </ion-list-header>
+
+            <div class="scrollmenu">
+                <ion-card class="result-card" *ngFor="let room of visibleRooms">
+                    <ion-row class="full-size" justify-content-center align-items-center>
+                        <p>{{ room.label }}</p>
+                    </ion-row>
+                </ion-card>
+            </div>
+        </div>
+
         <ion-row class="card-container" *ngFor="let course of courses">
             <app-course-card [course]="course" class="card-container"></app-course-card>
         </ion-row>

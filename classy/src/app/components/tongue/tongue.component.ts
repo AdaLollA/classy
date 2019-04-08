@@ -40,6 +40,7 @@ export class TongueComponent implements OnInit {
         top: '70vh',
         transition: ''
     };
+    resultHeight: string = "0px";
 
     public defaultMode: boolean = true;
 
@@ -59,14 +60,21 @@ export class TongueComponent implements OnInit {
         this.courses = [
             {label: 'Course A'},
             {label: 'Course B'},
+            {label: 'Course B'},
+            {label: 'Course B'},
             {label: 'Course C'}
         ];
 
         this.rooms = [
             {label: 'Room A'},
             {label: 'Room B'},
+            {label: 'Room B'},
+            {label: 'Room B'},
             {label: 'Room C'}
         ];
+
+        // init searchable objects by calling search with null
+        this.searchFor(null);
     }
 
     public dragRelease() {
@@ -105,31 +113,42 @@ export class TongueComponent implements OnInit {
     }
 
     public searchFor(event) {
-        let searchStr = event.target.value;
+        if (event) {
+            let searchStr = event.target.value;
+            if (searchStr.length > 0) {
+                this.visibleCourses = [];
+                this.visibleRooms = [];
 
-        this.visibleCourses = [];
-        this.visibleRooms = [];
+                if (searchStr && searchStr.trim() != '') {
+                    this.visibleCourses = this.courses.filter((item) => {
+                        return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
+                    });
+                }
 
-        if (searchStr && searchStr.trim() != '') {
-            this.visibleCourses = this.courses.filter((item) => {
-                return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
-            });
-        }
-
-        if (searchStr && searchStr.trim() != '') {
-            this.visibleRooms = this.rooms.filter((item) => {
-                return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
-            });
+                if (searchStr && searchStr.trim() != '') {
+                    this.visibleRooms = this.rooms.filter((item) => {
+                        return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
+                    });
+                }
+            } else {
+                this.visibleCourses = this.courses;
+                this.visibleRooms = this.rooms;
+            }
+        } else {
+            this.visibleCourses = this.courses;
+            this.visibleRooms = this.rooms;
         }
     }
 
     public searchFocus() {
         // todo
         this.tongueModeOpaque(this.drag);
+        this.resultHeight = '275px';
     }
 
     public searchBlur() {
         // todo
         this.tongueModeDefault(this.drag);
+        this.resultHeight = '0px';
     }
 }
