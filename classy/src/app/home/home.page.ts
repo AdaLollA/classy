@@ -28,12 +28,10 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.video);
-        console.log(this.image);
-        console.log(this.canvas);
+        this.captureVideo();
     }
 
-    public captureVideoButtonClick() {
+    public captureVideo() {
         navigator.mediaDevices.getUserMedia(this.constraints)
             .then((stream) => {
                 this.handleSuccess(stream);
