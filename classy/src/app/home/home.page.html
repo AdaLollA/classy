@@ -1,12 +1,12 @@
 <ion-content>
-  <video class="feed" #video autoplay></video>
+    <video class="feed" #video autoplay></video>
 
-  <ion-row class="tongue" justify-content-around>
-    <div col-12 class="handle"></div>
-  </ion-row>
+    <app-tongue></app-tongue>
 
-  <ion-button (click)="captureVideo()">capture video</ion-button>
-  <img #image src="">
-  <ion-button (click)="screenShotButtonClick()" [disabled]="screenShotButtonDisabled">screen shot</ion-button>
-  <canvas #canvas style="display:none;"></canvas>
+    <!--
+    <ion-button (click)="captureVideo()">capture video</ion-button>
+    <img #image src="">
+    <ion-button (click)="screenShotButtonClick()" [disabled]="screenShotButtonDisabled">screen shot</ion-button>
+    <canvas #canvas style="display:none;"></canvas>
+    -->
 </ion-content>
