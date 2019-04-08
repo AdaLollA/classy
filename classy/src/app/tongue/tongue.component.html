@@ -1,8 +1,13 @@
 <div class="tongue-container">
     <ion-row #tongue class="tongue" justify-content-around cdkDragLockAxis="y" cdkDragBoundary=".tongue-container" cdkDrag
              (cdkDragEnded)="dragEnd($event)" (cdkDragStarted)="dragStart()">
-        <ion-row class="handle-container" col-12 justify-content-center cdkDragHandle>
-            <div col-12 class="handle"></div>
+        <ion-row class="handle-container" size="12" justify-content-center cdkDragHandle>
+            <div class="handle"></div>
         </ion-row>
+
+        <ion-row size="12" *ngFor="let course of courses">
+            <app-course-card [course]="course"></app-course-card>
+        </ion-row>
+
     </ion-row>
 </div>

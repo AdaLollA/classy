@@ -1,5 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 
+// todo extend interface
+// todo relocate interface code
+export interface ICourse {
+  title: string
+}
+
 @Component({
   selector: 'app-tongue',
   templateUrl: './tongue.component.html',
@@ -12,10 +18,19 @@ export class TongueComponent implements OnInit {
   private initTop: number;
   private prevPosition: number;
 
+  public courses: ICourse[] = [];
+
   constructor() { }
 
   ngOnInit() {
     this.initTop = this.tongue.el.getBoundingClientRect().top;
+
+    // todo temp test data
+    this.courses = [
+      {title: 'Course A'},
+      {title: 'Course B'},
+      {title: 'Course C'}
+    ]
   }
 
   public dragEnd(event) {

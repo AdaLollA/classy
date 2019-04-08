@@ -8,6 +8,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {HomePage} from './home.page';
 import {NgProgressModule} from '@ngx-progressbar/core';
 import {TongueComponent} from '../tongue/tongue.component';
+import {CourseCardComponent} from '../course-card/course-card.component';
 
 @NgModule({
     imports: [
@@ -23,7 +24,7 @@ import {TongueComponent} from '../tongue/tongue.component';
         NgProgressModule,
         DragDropModule
     ],
-    declarations: [HomePage, TongueComponent]
+    declarations: [HomePage, TongueComponent, CourseCardComponent]
 })
 export class HomePageModule {
 }
