@@ -3,7 +3,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 // todo extend interface
 // todo relocate interface code
 export interface ICourse {
-    title: string
+    label: string
+}
+
+export interface IRoom {
+    label: string
 }
 
 export interface ITongueStyle {
@@ -32,7 +36,12 @@ export class TongueComponent implements OnInit {
     };
 
     public defaultMode: boolean = true;
+
     public courses: ICourse[] = [];
+    public rooms: IRoom[] = [];
+
+    public visibleCourses: ICourse[] = [];
+    public visibleRooms: IRoom[] = [];
 
     constructor() {
     }
@@ -42,9 +51,15 @@ export class TongueComponent implements OnInit {
 
         // todo temp test data
         this.courses = [
-            {title: 'Course A'},
-            {title: 'Course B'},
-            {title: 'Course C'}
+            {label: 'Course A'},
+            {label: 'Course B'},
+            {label: 'Course C'}
+        ];
+
+        this.rooms = [
+            {label: 'Room A'},
+            {label: 'Room B'},
+            {label: 'Room C'}
         ];
     }
 
@@ -90,4 +105,22 @@ export class TongueComponent implements OnInit {
         this.defaultMode = true;
     }
 
+    searchFor(event) {
+        let searchStr = event.target.value;
+
+        this.visibleCourses = [];
+        this.visibleRooms = [];
+
+        if (searchStr && searchStr.trim() != '') {
+            this.visibleCourses = this.courses.filter((item) => {
+                return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
+            })
+        }
+
+        if (searchStr && searchStr.trim() != '') {
+            this.visibleRooms = this.rooms.filter((item) => {
+                return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
+            })
+        }
+    }
 }
