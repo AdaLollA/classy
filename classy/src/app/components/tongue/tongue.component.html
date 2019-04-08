@@ -1,5 +1,10 @@
+<ion-searchbar #search class="search"
+               animated="true" color="light"></ion-searchbar>
 <div class="tongue-container">
-    <ion-row #tongue class="tongue" justify-content-start align-items-start cdkDragLockAxis="y" cdkDragBoundary=".tongue-container" cdkDrag
+    <ion-row #tongue class="tongue" justify-content-start align-items-start cdkDragLockAxis="y"
+             cdkDragBoundary=".tongue-container" cdkDrag
+             [ngStyle]="{'border-radius': tongueStyle.borderRadius,
+             'box-shadow': tongueStyle.boxShadow}"
              (cdkDragEnded)="dragEnd($event)" (cdkDragStarted)="dragStart()">
         <ion-row class="handle-container" justify-content-center cdkDragHandle>
             <div class="handle"></div>

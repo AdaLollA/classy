@@ -1,0 +1,12 @@
+<ion-content>
+    <video class="feed" #video autoplay></video>
+
+    <app-tongue></app-tongue>
+
+    <div class="debug" hidden>
+        <ion-button (click)="captureVideo()">capture video</ion-button>
+        <img #image src="">
+        <ion-button (click)="screenShot()" [disabled]="screenShotButtonDisabled">screen shot</ion-button>
+        <canvas #canvas style="display:none;"></canvas>
+    </div>
+</ion-content>
