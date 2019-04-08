@@ -32,6 +32,7 @@ export class TongueComponent implements OnInit {
 
     private initTop: number;
     private prevPosition: number;
+    private drag: DragRef;
 
     public tongueStyle: ITongueStyle = {
         borderRadius: '20px 20px 0px 0px',
@@ -68,26 +69,23 @@ export class TongueComponent implements OnInit {
         ];
     }
 
-    public dragRelease(event) {
+    public dragRelease() {
         if (this.prevPosition < this.tongue.el.getBoundingClientRect().top) {
-            // move down
-            console.log('down');
-            this.tongueModeDefault(event.source._dragRef);
+            this.tongueModeDefault(this.drag);
 
         } else if (this.prevPosition > this.tongue.el.getBoundingClientRect().top) {
-            // move up
-            console.log('up');
-            this.tongueModeOpaque(event.source._dragRef);
+            this.tongueModeOpaque(this.drag);
         }
     }
 
-    public dragStart() {
+    public dragStart(event) {
+        this.drag = event.source._dragRef;
         this.prevPosition = this.tongue.el.getBoundingClientRect().top;
         this.tongueStyle.transition = '';
     }
 
     public tongueModeOpaque(drag: DragRef) {
-        drag.reset();
+        drag ? drag.reset() : '';
         this.search.el.style.background = 'white';
         this.tongueStyle.boxShadow = '';
         this.tongueStyle.borderRadius = '';
@@ -97,7 +95,7 @@ export class TongueComponent implements OnInit {
     }
 
     public tongueModeDefault(drag: DragRef) {
-        drag.reset();
+        drag ? drag.reset() : '';
         this.search.el.style.background = 'transparent';
         this.tongueStyle.boxShadow = '0px -5px 10px rgba(0, 0, 0, 0.1)';
         this.tongueStyle.borderRadius = '20px 20px 0px 0px';
@@ -106,7 +104,7 @@ export class TongueComponent implements OnInit {
         this.tongueStyle.top = '70vh';
     }
 
-    searchFor(event) {
+    public searchFor(event) {
         let searchStr = event.target.value;
 
         this.visibleCourses = [];
@@ -123,5 +121,15 @@ export class TongueComponent implements OnInit {
                 return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
             });
         }
+    }
+
+    public searchFocus() {
+        // todo
+        this.tongueModeOpaque(this.drag);
+    }
+
+    public searchBlur() {
+        // todo
+        this.tongueModeDefault(this.drag);
     }
 }

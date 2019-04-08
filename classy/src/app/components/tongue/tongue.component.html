@@ -1,11 +1,11 @@
 <ion-searchbar #search class="search" autocomplete="true" placeholder="Room / Course"
-               animated="true" color="light" (input)="searchFor($event)"></ion-searchbar>
+               animated="true" color="light" (input)="searchFor($event)" (ionFocus)="searchFocus()" (ionBlur)="searchBlur()"></ion-searchbar>
 <div class="tongue-container">
     <ion-row #tongue class="tongue" justify-content-start align-items-start cdkDragLockAxis="y"
              cdkDragBoundary=".tongue-container" cdkDrag
              [ngStyle]="{'border-radius': tongueStyle.borderRadius,
              'box-shadow': tongueStyle.boxShadow, 'top': tongueStyle.top, 'transition': tongueStyle.transition}"
-             (cdkDragReleased)="dragRelease($event)" (cdkDragStarted)="dragStart()">
+             (cdkDragReleased)="dragRelease()" (cdkDragStarted)="dragStart($event)">
         <ion-row class="handle-container" justify-content-center cdkDragHandle>
             <div class="handle"></div>
         </ion-row>
