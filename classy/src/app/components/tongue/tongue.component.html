@@ -1,5 +1,6 @@
 <ion-searchbar #search class="search" autocomplete="true" placeholder="Room / Course"
-               animated="true" color="light" (input)="searchFor($event)" (ionFocus)="searchFocus()" (ionBlur)="searchBlur()"></ion-searchbar>
+               animated="true" color="light" (input)="searchFor($event)" (ionFocus)="searchFocus()"
+               (ionBlur)="searchBlur()"></ion-searchbar>
 <div class="tongue-container">
     <ion-row #tongue class="tongue" justify-content-start align-items-start cdkDragLockAxis="y"
              cdkDragBoundary=".tongue-container" cdkDrag
@@ -10,39 +11,43 @@
             <div class="handle"></div>
         </ion-row>
 
-        <div class="result-container" [ngStyle]="{'height': resultHeight}">
-            <!-- course search results -->
-            <ion-list-header>
-                <ion-label>Courses</ion-label>
-            </ion-list-header>
+        <div class="card-scroller">
 
-            <div class="scrollmenu">
-                <ion-card class="result-card" *ngFor="let course of visibleCourses">
-                    <ion-row class="full-size" justify-content-center align-items-center>
-                        <p>{{ course.label }}</p>
-                    </ion-row>
-                </ion-card>
+            <div class="result-container" [ngStyle]="{'height': resultHeight}">
+                <!-- course search results -->
+                <ion-list-header>
+                    <ion-label>Courses</ion-label>
+                </ion-list-header>
+
+                <div class="scrollmenu">
+                    <ion-card class="result-card" *ngFor="let course of visibleCourses">
+                        <ion-row class="full-size" justify-content-center align-items-center>
+                            <p>{{ course.label }}</p>
+                        </ion-row>
+                    </ion-card>
+                </div>
+
+                <!-- room search results -->
+                <ion-list-header>
+                    <ion-label>Rooms</ion-label>
+                </ion-list-header>
+
+                <div class="scrollmenu">
+                    <ion-card class="result-card" *ngFor="let room of visibleRooms">
+                        <ion-row class="full-size" justify-content-center align-items-center>
+                            <p>{{ room.label }}</p>
+                        </ion-row>
+                    </ion-card>
+                </div>
             </div>
 
-            <!-- room search results -->
-            <ion-list-header>
-                <ion-label>Rooms</ion-label>
-            </ion-list-header>
+            <ion-row class="card-container">
+                <app-course-card [course]="courses[0]" class="card-container"></app-course-card>
+                <app-floor-plan class="card-container"></app-floor-plan>
+                <app-auth-card class="card-container"></app-auth-card>
+            </ion-row>
 
-            <div class="scrollmenu">
-                <ion-card class="result-card" *ngFor="let room of visibleRooms">
-                    <ion-row class="full-size" justify-content-center align-items-center>
-                        <p>{{ room.label }}</p>
-                    </ion-row>
-                </ion-card>
-            </div>
         </div>
-
-        <ion-row class="card-container">
-            <app-course-card [course]="courses[0]" class="card-container"></app-course-card>
-            <app-floor-plan class="card-container"></app-floor-plan>
-            <app-auth-card class="card-container"></app-auth-card>
-        </ion-row>
 
     </ion-row>
 </div>

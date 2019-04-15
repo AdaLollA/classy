@@ -63,3 +63,8 @@ div.scrollmenu * {
   transition: all 0.2s linear;
   overflow: hidden;
 }
+
+.card-scroller {
+  overflow-y: scroll;
+  height: 90vh;
+}
