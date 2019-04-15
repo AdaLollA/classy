@@ -1,4 +1,60 @@
-.card {
+.auth-card {
   width: 90%;
   height: 200px;
+  background: grey;
+}
+
+.red-stripe {
+  height: 60px;
+  width: 100%;
+  background: #7E201C;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.title {
+  font-size: 24px;
+  color: white;
+}
+
+.sub-title {
+  font-size: 16px;
+  color: white;
+}
+
+.card-data-area {
+  padding-left: 20px;
+}
+
+.signature-field {
+  background: lightgrey;
+  height: 35px;
+  width: 60%;
+  border: solid #7E201C 1px;
+  border-radius: 40px;
+  margin-left: -20px;
+}
+
+.person-col {
+  padding-bottom: 2px;
+}
+
+.person-icon {
+  background: white;
+  font-size: 80px;
+  color: darkgray;
+}
+
+.title-container {
+  align-content: center;
+}
+
+.fh-logo {
+  height: 100%;
+  padding-right: 10px;
+}
+
+.detail-text {
+  color: black;
+  padding-top: 15px;
 }

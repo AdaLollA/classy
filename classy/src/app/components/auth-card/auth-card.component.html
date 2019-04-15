@@ -1,3 +1,25 @@
-<ion-card class="card">
-  auth card
+<ion-card class="auth-card">
+    <ion-row class="red-stripe">
+        <ion-col size="8" class="title-container">
+            <p no-margin class="title">Studentenausweis</p>
+            <p no-margin class="sub-title">International Student Card</p>
+        </ion-col>
+        <ion-col no-padding size="4">
+            <img class="fh-logo" src="../../../assets/icon/fh.png">
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="card-data-area">
+        <ion-col size="3.5" class="person-col">
+            <ion-icon name="person" class="person-icon"></ion-icon>
+        </ion-col>
+        <ion-col size="8.5">
+            <ion-row class="detail-text"><b>{{ surname }}</b>&nbsp; {{ name }}</ion-row>
+            <ion-row class="detail-text">{{ id }}</ion-row>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <div class="signature-field"></div>
+    </ion-row>
 </ion-card>

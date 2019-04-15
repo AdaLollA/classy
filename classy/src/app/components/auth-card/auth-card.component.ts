@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth-card.component.scss'],
 })
 export class AuthCardComponent implements OnInit {
+  surname = 'surname';
+  name = 'name';
+  id = '1810455123';
 
   constructor() { }
 
