@@ -9,6 +9,8 @@ import {ProviderComponent} from '../provider/provider.component';
     styleUrls: ['./course-card.component.scss'],
 })
 export class CourseCardComponent implements OnInit {
+    progress: number = 0.3;
+    interval;
 
     @Input('course')
     course: ICourse;
@@ -17,6 +19,7 @@ export class CourseCardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.startTimer();
     }
 
     generateQR() {
@@ -32,5 +35,19 @@ export class CourseCardComponent implements OnInit {
              */
         });
         // modal.present();
+    }
+
+    startTimer() {
+        this.interval = setInterval(() => {
+            if(this.progress < 1) {
+                this.progress += 0.001;
+            } else {
+                this.progress = 0;
+            }
+        },100)
+    }
+
+    pauseTimer() {
+        clearInterval(this.interval);
     }
 }
