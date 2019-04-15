@@ -1,5 +1,16 @@
 .card {
   width: 90%;
-  height: 200px;
+  height: calc(25vh - 60px);
   margin-bottom: 0;
+  margin-top: 3px;
+}
+
+.scanning-now {
+    font-size: 25px;
+}
+
+.time {
+  font-size: 25px;
+  color: limegreen;
+  text-align: right;
 }

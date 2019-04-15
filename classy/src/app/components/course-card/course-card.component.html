@@ -1,3 +1,8 @@
 <ion-card class="card" (click)="generateQR()">
-  course card: {{ course.label }}
+  <ion-row padding>
+    <ion-col size="8" class="scanning-now">Scanning now...</ion-col>
+    <ion-col size="4" class="time">13:00</ion-col>
+  </ion-row>
+
+  <p>course card: {{ course.label }}</p>
 </ion-card>
