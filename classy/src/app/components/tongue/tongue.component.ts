@@ -148,7 +148,7 @@ export class TongueComponent implements OnInit {
 
     public searchBlur() {
         // todo
-        this.tongueModeDefault(this.drag);
+        // this.tongueModeDefault(this.drag);
         this.resultHeight = '0px';
     }
 }
