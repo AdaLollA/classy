@@ -10,6 +10,8 @@ import {NgProgressModule} from '@ngx-progressbar/core';
 import {TongueComponent} from '../../components/tongue/tongue.component';
 import {CourseCardComponent} from '../../components/course-card/course-card.component';
 import {ProviderComponent} from '../../components/provider/provider.component';
+import {AuthCardComponent} from '../../components/auth-card/auth-card.component';
+import {FloorPlanComponent} from '../../components/floor-plan/floor-plan.component';
 
 @NgModule({
     imports: [
@@ -25,7 +27,7 @@ import {ProviderComponent} from '../../components/provider/provider.component';
         NgProgressModule,
         DragDropModule
     ],
-    declarations: [HomePage, TongueComponent, CourseCardComponent, ProviderComponent]
+    declarations: [HomePage, TongueComponent, CourseCardComponent, ProviderComponent, AuthCardComponent, FloorPlanComponent]
 })
 export class HomePageModule {
 }
