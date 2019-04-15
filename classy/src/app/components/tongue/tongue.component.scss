@@ -65,6 +65,7 @@ div.scrollmenu * {
 }
 
 .card-scroller {
+  align-content: start;
   overflow-y: scroll;
   height: 90vh;
 }
