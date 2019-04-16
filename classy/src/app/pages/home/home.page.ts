@@ -31,9 +31,9 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit(): void {
-        this.captureVideo();
+        // this.captureVideo();
         // this.observableTimer();
-        this.initQrReader();
+        // this.initQrReader();
     }
 
     private initQrReader() {
