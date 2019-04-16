@@ -1,16 +1,6 @@
-<!--
 <ion-content>
-    <video class="feed" #video autoplay></video>
+    <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="true" outline="#00FF00" refreshRate="500"></app-qr-reader>
     <ion-icon name="qr-scanner" class="qr-icon"></ion-icon>
-
     <app-tongue></app-tongue>
-
-    <div class="debug" hidden>
-        <ion-button (click)="captureVideo()">capture video</ion-button>
-        <img #image src="">
-        <ion-button (click)="screenShot()" [disabled]="screenShotButtonDisabled">screen shot</ion-button>
-        <canvas #canvas style="display:none;"></canvas>
-    </div>
 </ion-content>
--->
-<app-qr-reader style="width: 100%; height: 100%;"></app-qr-reader>
+
