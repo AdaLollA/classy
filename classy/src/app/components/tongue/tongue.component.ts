@@ -114,7 +114,7 @@ export class TongueComponent implements OnInit {
         this.tongueStyle.top = '70vh';
         setTimeout(() => {
             this.inForegroundEmitter.emit(false);
-        });
+        }, 200);
     }
 
     public searchFor(event) {

@@ -17,6 +17,6 @@ export class HomePage implements OnInit {
     }
 
     tongueModeChange(inForeground: boolean) {
-        console.log(inForeground);
+        this.disableScanning = inForeground;
     }
 }

@@ -1,5 +1,7 @@
 <ion-content>
-    <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="true" [outline]="'#00FF00'" [disabled]="false"></app-qr-reader>
+    <!-- todo is smoother when disabling feed entirely (not only stopping scanning) -->
+    <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="true" [outline]="'#00FF00'" [disabled]="false"
+                   [stopScanning]="disableScanning"></app-qr-reader>
     <ion-icon name="qr-scanner" class="qr-icon"></ion-icon>
     <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
 </ion-content>
