@@ -1,13 +1,8 @@
 <ion-content>
-    <video class="feed" #video autoplay></video>
+    <!-- todo is smoother when disabling feed entirely (not only stopping scanning) -->
+    <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="true" [outline]="'#00FF00'" [disabled]="false"
+                   [stopScanning]="disableScanning"></app-qr-reader>
     <ion-icon name="qr-scanner" class="qr-icon"></ion-icon>
-
-    <app-tongue></app-tongue>
-
-    <div class="debug" hidden>
-        <ion-button (click)="captureVideo()">capture video</ion-button>
-        <img #image src="">
-        <ion-button (click)="screenShot()" [disabled]="screenShotButtonDisabled">screen shot</ion-button>
-        <canvas #canvas style="display:none;"></canvas>
-    </div>
+    <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
 </ion-content>
+
