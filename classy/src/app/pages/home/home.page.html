@@ -1,6 +1,6 @@
 <ion-content>
     <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="true" [outline]="'#00FF00'" [disabled]="false"></app-qr-reader>
     <ion-icon name="qr-scanner" class="qr-icon"></ion-icon>
-    <app-tongue></app-tongue>
+    <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
 </ion-content>
 

@@ -1,8 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {DragRef} from '@angular/cdk/drag-drop';
 
-// todo extend interface
-// todo relocate interface code
 export interface ICourse {
     label: string
 }
@@ -24,6 +22,9 @@ export interface ITongueStyle {
     styleUrls: ['./tongue.component.scss'],
 })
 export class TongueComponent implements OnInit {
+    @Output('inForeground')
+    inForegroundEmitter: EventEmitter<boolean> = new EventEmitter();
+
     @ViewChild('search')
     search;
 
@@ -40,7 +41,7 @@ export class TongueComponent implements OnInit {
         top: '70vh',
         transition: ''
     };
-    resultHeight: string = "0px";
+    resultHeight: string = '0px';
 
     public defaultMode: boolean = true;
 
@@ -56,7 +57,7 @@ export class TongueComponent implements OnInit {
     ngOnInit() {
         this.initTop = this.tongue.el.getBoundingClientRect().top;
 
-        // todo temp test data
+        // test data
         this.courses = [
             {label: 'Course A'},
             {label: 'Course B'},
@@ -87,6 +88,7 @@ export class TongueComponent implements OnInit {
     }
 
     public dragStart(event) {
+        this.inForegroundEmitter.emit(true);
         this.drag = event.source._dragRef;
         this.prevPosition = this.tongue.el.getBoundingClientRect().top;
         this.tongueStyle.transition = '';
@@ -110,6 +112,9 @@ export class TongueComponent implements OnInit {
         this.defaultMode = true;
         this.tongueStyle.transition = 'all 0.2s linear';
         this.tongueStyle.top = '70vh';
+        setTimeout(() => {
+            this.inForegroundEmitter.emit(false);
+        });
     }
 
     public searchFor(event) {
@@ -141,13 +146,11 @@ export class TongueComponent implements OnInit {
     }
 
     public searchFocus() {
-        // todo
         this.tongueModeOpaque(this.drag);
         this.resultHeight = '275px';
     }
 
     public searchBlur() {
-        // todo
         // this.tongueModeDefault(this.drag);
         this.resultHeight = '0px';
     }
