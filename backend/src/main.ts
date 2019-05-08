@@ -5,6 +5,7 @@ import { eventContext } from 'aws-serverless-express/middleware';
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import bodyParser = require('body-parser');
 
 // NOTE: If you get ERR_CONTENT_DECODING_FAILED in your browser, this is likely
 // due to a compressed response (e.g. gzip) which has not been handled correctly
@@ -27,6 +28,9 @@ async function bootstrapServer(): Promise<Server> {
     try {
       const expressApp = require('express')();
       const nestApp = await NestFactory.create(AppModule, expressApp);
+      nestApp.use(bodyParser.json({ limit: '50mb' }));
+      nestApp.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+      nestApp.enableCors();
       nestApp.use(eventContext());
       await nestApp.init();
       cachedServer = createServer(expressApp, undefined, binaryMimeTypes);

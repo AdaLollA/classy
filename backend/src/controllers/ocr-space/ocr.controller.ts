@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { OcrResult } from '../../services/ocr-space/ocr-result';
 import { OcrSpaceService } from '../../services/ocr-space/ocr-space.service';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
@@ -10,14 +10,9 @@ export class OcrController {
   constructor(private readonly ocrSpaceService: OcrSpaceService) {
   }
 
-  @Get('hello')
-  public getHello() {
-    return { message: 'Hello World!' };
-  }
-
-  @Post('image')
-  public async getTextOfImage(@Body() imageInput: ImageInput): Promise<OcrResult> {
-    console.log(imageInput);
+  @Post('')
+  public async getTextFromImage(@Body() imageInput: ImageInput): Promise<OcrResult> {
     return this.ocrSpaceService.getTextOfPicture(imageInput.base64Image).toPromise();
   }
+
 }

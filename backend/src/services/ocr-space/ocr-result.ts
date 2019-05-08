@@ -1,3 +1,7 @@
 export interface OcrResult {
-  parsedResults: string[];
+  campus: string;
+  name: string;
+  birthday: string;
+  nation: string;
+  studentId: string;
 }
