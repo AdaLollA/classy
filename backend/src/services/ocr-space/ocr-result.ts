@@ -1,7 +1,18 @@
-export interface OcrResult {
-  campus: string;
-  name: string;
-  birthday: string;
-  nation: string;
-  studentId: string;
+import { ApiModelProperty } from '@nestjs/swagger';
+
+export class OcrResult {
+  @ApiModelProperty()
+  readonly campus: string;
+
+  @ApiModelProperty()
+  readonly name: string;
+
+  @ApiModelProperty()
+  readonly birthday: string;
+
+  @ApiModelProperty()
+  readonly nation: string;
+
+  @ApiModelProperty()
+  readonly studentId: string;
 }

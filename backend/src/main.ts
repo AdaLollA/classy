@@ -4,6 +4,7 @@ import { createServer, proxy } from 'aws-serverless-express';
 import { eventContext } from 'aws-serverless-express/middleware';
 
 import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import bodyParser = require('body-parser');
 
@@ -32,6 +33,18 @@ async function bootstrapServer(): Promise<Server> {
       nestApp.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
       nestApp.enableCors();
       nestApp.use(eventContext());
+
+      // Init Swagger
+      // const options = new DocumentBuilder()
+      //   .setTitle('Classy API')
+      //   .setDescription('API for the classy application')
+      //   .setVersion('1.0')
+      //   .addTag('classy')
+      //   .build();
+      //
+      // const document = SwaggerModule.createDocument(nestApp, options);
+      // SwaggerModule.setup('api', nestApp, document);
+
       await nestApp.init();
       cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
     } catch (error) {
