@@ -1,7 +1,25 @@
 .qrcode {
     text-align: center;
     width: 100%;
+    height: 100%;
     margin-top: 15vh;
+}
+
+.qr-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.size-slider {
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+}
+
+.slider-wrapper {
+    width: 400px;
+    display: inline-block;
 }
 
 #qrElement {

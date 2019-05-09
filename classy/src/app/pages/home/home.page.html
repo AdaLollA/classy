@@ -2,10 +2,10 @@
     <!-- todo is smoother when disabling feed entirely (not only stopping scanning) -->
 
     <div *ngIf="shouldShowQRReader(); else qrpresenter">
-        <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
         <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="false" [outline]="'#00FF00'" [disabled]="disableScanning"
             [stopScanning]="disableScanning"></app-qr-reader>
         <ion-icon name="qr-scanner" class="qr-icon"></ion-icon>
+        <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
     </div>
 
     <ng-template #qrpresenter>
@@ -15,7 +15,7 @@
                     <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
                 </ion-col>
                 <ion-col size="8">
-                    <app-qr-presenter></app-qr-presenter>
+                    <app-qr-presenter class="presenter"></app-qr-presenter>
                 </ion-col>
             </ion-row>
         </ion-grid>
