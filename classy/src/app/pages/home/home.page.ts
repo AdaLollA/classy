@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Platform} from '@ionic/angular';
 
 @Component({
     selector: 'app-home',
@@ -7,6 +8,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomePage implements OnInit {
     private disableScanning: boolean = false;
+
+    constructor(public platform: Platform) {
+
+    }
 
     ngOnInit(): void {
 
@@ -18,5 +23,12 @@ export class HomePage implements OnInit {
 
     tongueModeChange(inForeground: boolean) {
         this.disableScanning = inForeground;
+    }
+
+    shouldShowQRReader(): boolean {
+        if (this.platform.width() > this.platform.height()) {
+            return false;
+        }
+        return true;
     }
 }

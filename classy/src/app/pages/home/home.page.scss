@@ -4,6 +4,7 @@
 
 ion-content {
   --overflow: hidden;
+  //display: flex!important;
 }
 
 .debug {
@@ -18,3 +19,16 @@ ion-content {
   color: white;
   left: 10vw;
 }
+
+/*
+.content {
+  width: 80%!important;
+  background: lightblue;
+  display: inline-block!important;
+}
+
+.tongue {
+  width: 20%!important;
+  background: coral;
+  display: inline-block!important;
+}*/

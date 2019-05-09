@@ -13,6 +13,7 @@ import {ProviderComponent} from '../../components/provider/provider.component';
 import {AuthCardComponent} from '../../components/auth-card/auth-card.component';
 import {FloorPlanComponent} from '../../components/floor-plan/floor-plan.component';
 import {QrReaderComponent} from '../../components/qr-reader/qr-reader.component';
+import { QrPresenterComponent } from 'src/app/components/qr-presenter/qr-presenter.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,7 @@ import {QrReaderComponent} from '../../components/qr-reader/qr-reader.component'
         NgProgressModule,
         DragDropModule
     ],
-    declarations: [HomePage, TongueComponent, CourseCardComponent, ProviderComponent, AuthCardComponent, FloorPlanComponent, QrReaderComponent]
+    declarations: [HomePage, TongueComponent, CourseCardComponent, ProviderComponent, AuthCardComponent, FloorPlanComponent, QrReaderComponent, QrPresenterComponent]
 })
 export class HomePageModule {
 }
