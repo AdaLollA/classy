@@ -21,9 +21,9 @@
 
                 <div class="scrollmenu">
                     <ion-card class="result-card" *ngFor="let course of visibleCourses">
-                        <ion-row class="full-size" justify-content-center align-items-center>
-                            <p>{{ course.label }}</p>
-                        </ion-row>
+                        <ion-card-content text-wrap>
+                            {{ course.label }}
+                        </ion-card-content>
                     </ion-card>
                 </div>
 
@@ -34,9 +34,9 @@
 
                 <div class="scrollmenu">
                     <ion-card class="result-card" *ngFor="let room of visibleRooms">
-                        <ion-row class="full-size" justify-content-center align-items-center>
-                            <p>{{ room.label }}</p>
-                        </ion-row>
+                        <ion-card-content>
+                            {{ room.label }}
+                        </ion-card-content>
                     </ion-card>
                 </div>
             </div>

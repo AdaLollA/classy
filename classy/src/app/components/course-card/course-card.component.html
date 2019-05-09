@@ -4,15 +4,18 @@
     <ion-row padding align-items-center class="full-height">
 
         <ion-row class="full-width">
-            <ion-col no-padding size="8" class="scanning-now">Scanning now...</ion-col>
-            <ion-col no-padding size="4" class="time">13:00</ion-col>
+            <ion-col no-padding size="8" class="scanning-now">Coming up...</ion-col>
+            <ion-col no-padding size="4" class="time"> {{ course.startTime | date : 'HH:mm' }} </ion-col>
         </ion-row>
 
         <ion-row>{{ course.label }}</ion-row>
 
         <ion-row class="full-width">
-            <ion-col no-padding size="6" class="course-id">MC519</ion-col>
-            <ion-col no-padding size="6" class="room-id"><ion-icon name="pin"></ion-icon>FH2-420 L1ME</ion-col>
+            <ion-col no-padding size="6" class="course-id">{{ course.id }}</ion-col>
+            <ion-col no-padding size="6" class="room-id">
+                <ion-icon name="pin"></ion-icon>
+                {{ course.room.label }}
+            </ion-col>
         </ion-row>
 
     </ion-row>

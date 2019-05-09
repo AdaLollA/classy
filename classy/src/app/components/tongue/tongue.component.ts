@@ -1,157 +1,208 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {DragRef} from '@angular/cdk/drag-drop';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { DragRef } from '@angular/cdk/drag-drop';
 
 export interface ICourse {
-    label: string
+  id: string;
+  label: string;
+  startTime: Date;
+  endTime: Date;
+  room: IRoom;
+  lecturers?: string[];
 }
 
 export interface IRoom {
-    label: string
+  id: string;
+  label: string;
 }
 
 export interface ITongueStyle {
-    boxShadow: string,
-    borderRadius: string,
-    top: string,
-    transition: string
+  boxShadow: string;
+  borderRadius: string;
+  top: string;
+  transition: string;
 }
 
 @Component({
-    selector: 'app-tongue',
-    templateUrl: './tongue.component.html',
-    styleUrls: ['./tongue.component.scss'],
+  selector: 'app-tongue',
+  templateUrl: './tongue.component.html',
+  styleUrls: ['./tongue.component.scss'],
 })
 export class TongueComponent implements OnInit {
-    @Output('inForeground')
-    inForegroundEmitter: EventEmitter<boolean> = new EventEmitter();
+  @Output('inForeground')
+  inForegroundEmitter: EventEmitter<boolean> = new EventEmitter();
 
-    @ViewChild('search')
-    search;
+  @ViewChild('search')
+  search;
 
-    @ViewChild('tongue')
-    tongue;
+  @ViewChild('tongue')
+  tongue;
 
-    private initTop: number;
-    private prevPosition: number;
-    private drag: DragRef;
+  private initTop: number;
+  private prevPosition: number;
+  private drag: DragRef;
 
-    public tongueStyle: ITongueStyle = {
-        borderRadius: '20px 20px 0px 0px',
-        boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.1)',
-        top: '70vh',
-        transition: ''
-    };
-    resultHeight: string = '0px';
+  public tongueStyle: ITongueStyle = {
+    borderRadius: '20px 20px 0px 0px',
+    boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.1)',
+    top: '70vh',
+    transition: ''
+  };
+  resultHeight = '0px';
 
-    public defaultMode: boolean = true;
+  public defaultMode = true;
 
-    public courses: ICourse[] = [];
-    public rooms: IRoom[] = [];
+  public courses: ICourse[] = [];
+  public rooms: IRoom[] = [];
 
-    public visibleCourses: ICourse[] = [];
-    public visibleRooms: IRoom[] = [];
+  public visibleCourses: ICourse[] = [];
+  public visibleRooms: IRoom[] = [];
 
-    constructor() {
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.initTop = this.tongue.el.getBoundingClientRect().top;
+
+    // test data
+    this.rooms = [
+      {
+        id: 'FH2.422',
+        label: 'Netcetera L1.ME'
+      },
+      {
+        id: 'FH2.414',
+        label: 'GDS'
+      },
+      {
+        id: 'FH2.424',
+        label: 'L2.ME'
+      },
+      {
+        id: 'FH2.408',
+        label: 'UST'
+      },
+      {
+        id: 'FH2.454',
+        label: 'SR2.ME'
+      },
+    ];
+
+    this.courses = [
+      {
+        label: 'Cross-Platform Development of Mobile Applications',
+        id: '2_MC507',
+        startTime: new Date(2019, 5, 10, 13, 0),
+        endTime: new Date(2019, 5, 10, 17, 55),
+        room: this.rooms[0]
+      },
+      {
+        label: 'Game Production',
+        id: 'IM540',
+        startTime: new Date(2019, 5, 10, 13, 0),
+        endTime: new Date(2019, 5, 10, 17, 55),
+        room: this.rooms[2]
+      },
+      {
+        label: 'Interactive Technologies',
+        id: '2_MC510',
+        startTime: new Date(2019, 5, 10, 13, 0),
+        endTime: new Date(2019, 5, 10, 17, 55),
+        room: this.rooms[1]
+      },
+      {
+        label: 'Game Art & Level Design',
+        id: 'DA530',
+        startTime: new Date(2019, 5, 10, 13, 0),
+        endTime: new Date(2019, 5, 10, 17, 55),
+        room: this.rooms[3]
+      },
+      {
+        label: 'Systems Engineering 2: Real-Time and Mobility in UML',
+        id: '2_MC516',
+        startTime: new Date(2019, 5, 10, 13, 0),
+        endTime: new Date(2019, 5, 10, 17, 55),
+        room: this.rooms[4]
+      },
+    ];
+
+    // init searchable objects by calling search with null
+    this.searchFor(null);
+  }
+
+  public dragRelease() {
+    if ( this.prevPosition < this.tongue.el.getBoundingClientRect().top ) {
+      this.tongueModeDefault(this.drag);
+
+    } else if ( this.prevPosition > this.tongue.el.getBoundingClientRect().top ) {
+      this.tongueModeOpaque(this.drag);
     }
+  }
 
-    ngOnInit() {
-        this.initTop = this.tongue.el.getBoundingClientRect().top;
+  public dragStart(event) {
+    this.inForegroundEmitter.emit(true);
+    this.drag = event.source._dragRef;
+    this.prevPosition = this.tongue.el.getBoundingClientRect().top;
+    this.tongueStyle.transition = '';
+  }
 
-        // test data
-        this.courses = [
-            {label: 'Course A'},
-            {label: 'Course B'},
-            {label: 'Course B'},
-            {label: 'Course B'},
-            {label: 'Course C'}
-        ];
+  public tongueModeOpaque(drag: DragRef) {
+    drag ? drag.reset() : '';
+    this.search.el.style.background = 'white';
+    this.tongueStyle.boxShadow = '';
+    this.tongueStyle.borderRadius = '';
+    this.defaultMode = false;
+    this.tongueStyle.transition = 'all 0.2s linear';
+    this.tongueStyle.top = '0';
+  }
 
-        this.rooms = [
-            {label: 'Room A'},
-            {label: 'Room B'},
-            {label: 'Room B'},
-            {label: 'Room B'},
-            {label: 'Room C'}
-        ];
+  public tongueModeDefault(drag: DragRef) {
+    drag ? drag.reset() : '';
+    this.search.el.style.background = 'transparent';
+    this.tongueStyle.boxShadow = '0px -5px 10px rgba(0, 0, 0, 0.1)';
+    this.tongueStyle.borderRadius = '20px 20px 0px 0px';
+    this.defaultMode = true;
+    this.tongueStyle.transition = 'all 0.2s linear';
+    this.tongueStyle.top = '70vh';
+    setTimeout(() => {
+      this.inForegroundEmitter.emit(false);
+    }, 200);
+  }
 
-        // init searchable objects by calling search with null
-        this.searchFor(null);
-    }
+  public searchFor(event) {
+    if ( event ) {
+      const searchStr = event.target.value;
+      if ( searchStr.length > 0 ) {
+        this.visibleCourses = [];
+        this.visibleRooms = [];
 
-    public dragRelease() {
-        if (this.prevPosition < this.tongue.el.getBoundingClientRect().top) {
-            this.tongueModeDefault(this.drag);
-
-        } else if (this.prevPosition > this.tongue.el.getBoundingClientRect().top) {
-            this.tongueModeOpaque(this.drag);
+        if ( searchStr && searchStr.trim() !== '' ) {
+          this.visibleCourses = this.courses.filter((item) => {
+            return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
+          });
         }
-    }
 
-    public dragStart(event) {
-        this.inForegroundEmitter.emit(true);
-        this.drag = event.source._dragRef;
-        this.prevPosition = this.tongue.el.getBoundingClientRect().top;
-        this.tongueStyle.transition = '';
-    }
-
-    public tongueModeOpaque(drag: DragRef) {
-        drag ? drag.reset() : '';
-        this.search.el.style.background = 'white';
-        this.tongueStyle.boxShadow = '';
-        this.tongueStyle.borderRadius = '';
-        this.defaultMode = false;
-        this.tongueStyle.transition = 'all 0.2s linear';
-        this.tongueStyle.top = '0';
-    }
-
-    public tongueModeDefault(drag: DragRef) {
-        drag ? drag.reset() : '';
-        this.search.el.style.background = 'transparent';
-        this.tongueStyle.boxShadow = '0px -5px 10px rgba(0, 0, 0, 0.1)';
-        this.tongueStyle.borderRadius = '20px 20px 0px 0px';
-        this.defaultMode = true;
-        this.tongueStyle.transition = 'all 0.2s linear';
-        this.tongueStyle.top = '70vh';
-        setTimeout(() => {
-            this.inForegroundEmitter.emit(false);
-        }, 200);
-    }
-
-    public searchFor(event) {
-        if (event) {
-            let searchStr = event.target.value;
-            if (searchStr.length > 0) {
-                this.visibleCourses = [];
-                this.visibleRooms = [];
-
-                if (searchStr && searchStr.trim() != '') {
-                    this.visibleCourses = this.courses.filter((item) => {
-                        return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
-                    });
-                }
-
-                if (searchStr && searchStr.trim() != '') {
-                    this.visibleRooms = this.rooms.filter((item) => {
-                        return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
-                    });
-                }
-            } else {
-                this.visibleCourses = this.courses;
-                this.visibleRooms = this.rooms;
-            }
-        } else {
-            this.visibleCourses = this.courses;
-            this.visibleRooms = this.rooms;
+        if ( searchStr && searchStr.trim() !== '' ) {
+          this.visibleRooms = this.rooms.filter((item) => {
+            return (item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1);
+          });
         }
+      } else {
+        this.visibleCourses = this.courses;
+        this.visibleRooms = this.rooms;
+      }
+    } else {
+      this.visibleCourses = this.courses;
+      this.visibleRooms = this.rooms;
     }
+  }
 
-    public searchFocus() {
-        this.tongueModeOpaque(this.drag);
-        this.resultHeight = '275px';
-    }
+  public searchFocus() {
+    this.tongueModeOpaque(this.drag);
+    this.resultHeight = '350px';
+  }
 
-    public searchBlur() {
-        // this.tongueModeDefault(this.drag);
-        this.resultHeight = '0px';
-    }
+  public searchBlur() {
+    // this.tongueModeDefault(this.drag);
+    this.resultHeight = '0px';
+  }
 }
