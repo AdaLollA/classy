@@ -10,7 +10,7 @@ export class AuthCardComponent implements OnInit {
   name = 'Max';
   id = '1810455123';
   birthday = '01.01.1970';
-  campus = 'Hagenberg'
+  campus = 'Hagenberg';
 
   constructor() { }
 
