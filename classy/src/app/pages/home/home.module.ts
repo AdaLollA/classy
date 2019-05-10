@@ -13,6 +13,7 @@ import { ProviderComponent } from '../../components/provider/provider.component'
 import { AuthCardComponent } from '../../components/auth-card/auth-card.component';
 import { QrReaderComponent } from '../../components/qr-reader/qr-reader.component';
 import { FloorPlanComponentModule } from '../../components/floor-plan/floor-plan.component.module';
+import { QrPresenterComponent } from 'src/app/components/qr-presenter/qr-presenter.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { FloorPlanComponentModule } from '../../components/floor-plan/floor-plan
     CourseCardComponent,
     ProviderComponent,
     AuthCardComponent,
-    QrReaderComponent
+    QrReaderComponent,
+    QrPresenterComponent
   ]
 })
 export class HomePageModule {

@@ -1,0 +1,14 @@
+<div class="qr-wrapper">
+  <div class="qrcode">
+    <div id="qrElement"></div>
+  </div>
+
+  <div class="size-slider">
+    <div class="slider-wrapper">
+      <ion-range value="10" min="1" max="30" step="1" (ionChange)="resizeQr($event.target.value)">
+        <ion-icon size="small" slot="start" name="expand"></ion-icon>
+        <ion-icon slot="end" name="expand"></ion-icon>
+      </ion-range>
+    </div>
+  </div>
+</div>

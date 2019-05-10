@@ -1,0 +1,31 @@
+.qrcode {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.qr-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.size-slider {
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+}
+
+.slider-wrapper {
+    width: 400px;
+    display: inline-block;
+    margin: 0;
+}
+
+#qrElement {
+    display: inline-block;
+}
