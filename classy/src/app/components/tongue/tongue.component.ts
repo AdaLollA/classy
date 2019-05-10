@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { DragRef } from '@angular/cdk/drag-drop';
+import { Platform } from '@ionic/angular';
 
 export interface ICourse {
   id: string;
@@ -57,12 +58,16 @@ export class TongueComponent implements OnInit {
   public visibleCourses: ICourse[] = [];
   public visibleRooms: IRoom[] = [];
 
-  constructor() {
+  constructor(private platform: Platform) {
   }
 
   ngOnInit() {
     this.initTop = this.tongue.el.getBoundingClientRect().top;
 
+    if ( this.platform.is('desktop') ) {
+      this.tongueStyle.top = '0';
+    }
+    
     // test data
     this.rooms = [
       {
