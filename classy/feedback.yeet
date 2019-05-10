@@ -1,0 +1,13 @@
+# Prof
+ - card progress bar might be better as lecture progress (color coded for better / worse the longer it goes)
+ - when a valid course qr code is scanned the tongue should expand and maybe provide further details about the course
+ - might run into a few problems when using OCR (quality persistence)
+ - performance on mobile (especially since qr reader is client sided)
+
+# Dish Me (Dicle & Co)
+ - very modern look
+ - floor plan is great
+ - how do you handle blur on student id card (OCR, login)
+ - change the qr placeholder to rectangle placeholder when scanning the student id card (login)
+ - clarify login and qr scan steps (process) in next presentation
+ - when scanning for id card only have the middle focused and the rest (around it) blurred
