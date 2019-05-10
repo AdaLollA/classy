@@ -44,6 +44,7 @@ export class QrPresenterComponent implements OnInit {
     this.qrSize = value;
     if(!!this.qrMatrix) {
       this.qrMatrix.scale = this.qrSize;
+      this.qrMatrix.margin = 0;
 
       var canvas = document.createElement('canvas');
       canvas.setAttribute('width', this.qrMatrix.pixelWidth);
