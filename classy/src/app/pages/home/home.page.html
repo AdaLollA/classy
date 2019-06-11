@@ -4,7 +4,6 @@
     <div *ngIf="shouldShowQRReader(); else qrpresenter">
         <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="false" [outline]="'#00FF00'" [disabled]="disableScanning"
             [stopScanning]="disableScanning"></app-qr-reader>
-        <ion-icon name="qr-scanner" class="qr-icon"></ion-icon>
         <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
     </div>
 
