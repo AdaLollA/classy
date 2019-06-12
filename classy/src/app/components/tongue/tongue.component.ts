@@ -51,6 +51,7 @@ export class TongueComponent implements OnInit {
 
   public loginLoading = false;
   public loggedIn = false;
+  public userData: IUserData = null;
 
   private initTop: number;
   private prevPosition: number;
@@ -238,6 +239,7 @@ export class TongueComponent implements OnInit {
         console.log("Login successful, received user data.")
         this.loggedIn = true;
         this.loginLoading = false;
+        this.userData = data;
       },
       err => {
         this.loggedIn = false;

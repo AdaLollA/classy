@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IUserData } from '../tongue/tongue.component';
 
 @Component({
   selector: 'app-auth-card',
@@ -6,11 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth-card.component.scss'],
 })
 export class AuthCardComponent implements OnInit {
-  surname = 'Mustermann';
-  name = 'Max';
-  id = '1810455123';
-  birthday = '01.01.1970';
-  campus = 'Hagenberg';
+
+  @Input("userdata") userData: IUserData;
 
   constructor() { }
 
@@ -18,6 +16,22 @@ export class AuthCardComponent implements OnInit {
 
   logout() {
     console.log('logout');
+  }
+
+  getName(): string {
+    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.name
+  }
+
+  getId(): string {
+    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.studentId
+  }
+
+  getBirthday(): string {
+    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.birthday
+  }
+
+  getCampus(): string {
+    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.campus
   }
 
 }
