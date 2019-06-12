@@ -11,4 +11,8 @@ export class LoginCardComponent implements OnInit {
 
   ngOnInit() {}
 
+  loginClicked() {
+    console.log("Login clicked")
+  }
+
 }
