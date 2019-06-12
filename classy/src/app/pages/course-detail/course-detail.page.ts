@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ICourse} from '../../components/tongue/tongue.component';
+import {ThemeService} from '../../services/theme/theme.service';
 
 @Component({
     selector: 'app-course-detail',
@@ -27,7 +28,7 @@ export class CourseDetailPage implements OnInit {
     } as ICourse;
 
 
-    constructor() {
+    constructor(private readonly theme: ThemeService) {
     }
 
     ngOnInit() {
@@ -35,5 +36,9 @@ export class CourseDetailPage implements OnInit {
 
     public openElearning(): void {
         window.open(this.course.url, '_blank');
+    }
+
+    public switchTheme() {
+        this.theme.setTheme('dark');
     }
 }

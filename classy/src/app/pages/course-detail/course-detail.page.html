@@ -1,6 +1,14 @@
 <ion-header>
     <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
         <ion-title>{{course.id}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="secondary" (click)="switchTheme()">
+                <ion-icon slot="icon-only" name="moon"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -25,12 +33,12 @@
                 platforms (and possibly also the web) can cause severe development overhead (and thus cost) when native
                 applications are used for each target platform. <a>more...</a>
             </ion-text>
-            <ion-button (click)="openElearning()" expand="block" color="secondary" class="course__elearning-button">
+            <ion-button (click)="openElearning()" expand="block" color="primary" class="course__elearning-button">
                 <ion-label>Open in elearning...</ion-label>
                 <ion-icon name="open" slot="end"></ion-icon>
             </ion-button>
         </ion-card-content>
     </ion-card>
 
-<!--    <app-floor-plan [buildingId]="course.room.building" [floorId]="course.room.floor"></app-floor-plan>-->
+    <!--    <app-floor-plan [buildingId]="course.room.building" [floorId]="course.room.floor"></app-floor-plan>-->
 </ion-content>
