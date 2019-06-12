@@ -20,7 +20,7 @@ export class CourseDetailPage implements OnInit {
             building: '2',
             floor: '4'
         },
-        image: 'https://www.netsolutions.com/insights/wp-content/uploads/2019/01/Featured-Image.jpg',
+        image: 'assets/images/illustration-mobile.svg',
         url: 'https://hagenberg.elearning.fh-ooe.at/course/view.php?id=8229',
         lecturers: [
             'Dr. Matthias Steinbauer'
@@ -38,7 +38,7 @@ export class CourseDetailPage implements OnInit {
         window.open(this.course.url, '_blank');
     }
 
-    public switchTheme() {
-        this.theme.setTheme('dark');
+    public switchTheme(): void {
+        this.theme.cycleTheme();
     }
 }

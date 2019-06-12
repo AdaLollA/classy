@@ -1,11 +1,11 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons>
             <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>{{course.id}}</ion-title>
         <ion-buttons slot="end">
-            <ion-button color="secondary" (click)="switchTheme()">
+            <ion-button color="primary" (click)="switchTheme()">
                 <ion-icon slot="icon-only" name="moon"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -18,12 +18,12 @@
         <img [src]="course.image" class="course__image">
         <ion-card-header>
             <ion-card-subtitle>{{course.id}}</ion-card-subtitle>
-            <ion-card-title>{{course.label}}</ion-card-title>
+            <ion-card-title class="course__title">{{course.label}}</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
             <h2><strong>6</strong> of <strong>7</strong> sessions completed</h2>
-            <ion-progress-bar color="primary" [value]="6/7"></ion-progress-bar>
+            <ion-progress-bar color="secondary" [value]="6/7"></ion-progress-bar>
             <br>
             <h1>Description</h1>
             <ion-text>
@@ -40,5 +40,5 @@
         </ion-card-content>
     </ion-card>
 
-    <!--    <app-floor-plan [buildingId]="course.room.building" [floorId]="course.room.floor"></app-floor-plan>-->
+<!--    <app-floor-plan [buildingId]="course.room.building" [floorId]="course.room.floor"></app-floor-plan>-->
 </ion-content>
