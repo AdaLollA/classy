@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { DragRef } from '@angular/cdk/drag-drop';
 import { Platform } from '@ionic/angular';
 import { delay } from 'q';
+import { QrReaderService } from '../../services/qr-reader/qr-reader.service';
 
 export interface ICourse {
   id: string;
@@ -61,7 +62,7 @@ export class TongueComponent implements OnInit {
   public visibleCourses: ICourse[] = [];
   public visibleRooms: IRoom[] = [];
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private qrReaderService: QrReaderService) {
   }
 
   ngOnInit() {
@@ -221,5 +222,6 @@ export class TongueComponent implements OnInit {
   public loginWithImage() {
     console.log("loginwithimage")
     this.loginLoading = true;
+    console.log(this.qrReaderService.getCurrentCameraImage());
   }
 }
