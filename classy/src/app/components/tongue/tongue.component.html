@@ -39,11 +39,19 @@
                 </div>
             </div>
 
-            <ion-row class="card-container">
-                <app-course-card [course]="courses[0]" class="card-container"></app-course-card>
-                <app-floor-plan class="card-container"></app-floor-plan>
-                <app-auth-card class="card-container"></app-auth-card>
-            </ion-row>
+            <div *ngIf="isLoggedIn(); else notLoggedIn">
+                <ion-row class="card-container">
+                    <app-course-card [course]="courses[0]" class="card-container"></app-course-card>
+                    <app-floor-plan class="card-container"></app-floor-plan>
+                    <app-auth-card class="card-container"></app-auth-card>
+                </ion-row>
+            </div>
+
+            <ng-template #notLoggedIn>
+                <ion-row class="card-container">
+                    <div>You are not logged in</div>
+                </ion-row>
+            </ng-template>
 
         </ion-row>
 

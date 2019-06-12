@@ -210,4 +210,8 @@ export class TongueComponent implements OnInit {
     // this.tongueModeDefault(this.drag);
     this.resultHeight = '0px';
   }
+
+  public isLoggedIn() {
+    return false;
+  }
 }
