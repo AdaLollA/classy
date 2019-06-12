@@ -155,8 +155,10 @@ export class TongueComponent implements OnInit {
     }
 
     public tongueModeOpaque(drag: DragRef) {
-        drag ? drag.reset() : '';
-        this.search.el.style.background = 'white';
+        if (drag) {
+            drag.reset();
+        }
+        this.search.el.style.background = 'var(--ion-color-light)';
         this.tongueStyle.boxShadow = '';
         this.tongueStyle.borderRadius = '';
         this.defaultMode = false;
@@ -165,7 +167,9 @@ export class TongueComponent implements OnInit {
     }
 
     public tongueModeDefault(drag: DragRef) {
-        drag ? drag.reset() : '';
+        if (drag) {
+            drag.reset();
+        }
         this.search.el.style.background = 'transparent';
         this.tongueStyle.boxShadow = '0px -5px 10px rgba(0, 0, 0, 0.1)';
         this.tongueStyle.borderRadius = '20px 20px 0px 0px';
