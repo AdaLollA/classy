@@ -1,13 +1,19 @@
 <ion-card class="card" *ngIf="buildings">
     <pinch-zoom>
-        <img src="../../../assets/floorplan/fh{{selectedBuildingId + '_' + selectedFloorId}}.png">
+        <img src="../../../assets/floorplan/fh{{buildingId + '_' + floorId}}.png">
     </pinch-zoom>
-    <ion-select interface="popover" placeholder="Building" (ionChange)="setCurrentBuilding($event)" [value]="selectedBuilding.id">
+    <ion-select interface="popover" placeholder="Building" (ionChange)="setCurrentBuilding($event)"
+                [value]="selectedBuilding.id">
         <ion-select-option *ngFor="let building of buildings"
-                           value="{{building.id}}">{{building.label}}</ion-select-option>
+                           value="{{building.id}}">
+            {{building.label}}
+        </ion-select-option>
     </ion-select>
-    <ion-select interface="popover" placeholder="Floor" (ionChange)="setCurrentFloor($event)" [value]="selectedFloor.id">
+    <ion-select interface="popover" placeholder="Floor" (ionChange)="setCurrentFloor($event)"
+                [value]="selectedFloor.id">
         <ion-select-option *ngFor="let floor of selectedBuilding.floors"
-                           value="{{floor.id}}">{{floor.label}}</ion-select-option>
+                           value="{{floor.id}}">
+            {{floor.label}}
+        </ion-select-option>
     </ion-select>
 </ion-card>
