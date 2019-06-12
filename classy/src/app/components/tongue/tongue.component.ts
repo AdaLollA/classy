@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { DragRef } from '@angular/cdk/drag-drop';
 import { Platform } from '@ionic/angular';
+import { delay } from 'q';
 
 export interface ICourse {
   id: string;
@@ -37,6 +38,8 @@ export class TongueComponent implements OnInit {
 
   @ViewChild('tongue')
   tongue;
+
+  public loginLoading = false;
 
   private initTop: number;
   private prevPosition: number;
@@ -213,5 +216,10 @@ export class TongueComponent implements OnInit {
 
   public isLoggedIn() {
     return false;
+  }
+
+  public loginWithImage() {
+    console.log("loginwithimage")
+    this.loginLoading = true;
   }
 }

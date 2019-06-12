@@ -49,7 +49,7 @@
 
             <ng-template #notLoggedIn>
                 <ion-row class="card-container">
-                    <app-login-card class="card-container"></app-login-card>
+                    <app-login-card [loading]="loginLoading" (onImageLogin)="loginWithImage()" class="card-container"></app-login-card>
                 </ion-row>
             </ng-template>
 

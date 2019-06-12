@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, Output, Input, SimpleChanges } from '@angular/core';
 import { IonProgressBar } from '@ionic/angular';
 
 @Component({
@@ -6,7 +6,7 @@ import { IonProgressBar } from '@ionic/angular';
   templateUrl: './login-card.component.html',
   styleUrls: ['./login-card.component.scss'],
 })
-export class LoginCardComponent implements OnInit {
+export class LoginCardComponent implements OnInit, OnChanges {
 
   @Input('loading') loading = false;
 
@@ -21,7 +21,7 @@ export class LoginCardComponent implements OnInit {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    const loadingChange: boolean = changes.name.currentValue;
+    const loadingChange: boolean = changes.loading.currentValue;
     if (loadingChange == true) {
       this.buttonDisabled = true;
       this.progressBarType = "indeterminate";
