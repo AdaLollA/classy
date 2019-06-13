@@ -283,6 +283,7 @@ export class TongueComponent implements OnInit {
           this.loggedIn = true;
           this.loginLoading = false;
           this.userData = data;
+          this.tongueModeOpaque(this.drag);
           Storage.set({ key: 'loggedIn', value: 'true' });
           Storage.set({ key: 'campus', value: data.campus });
           Storage.set({ key: 'name', value: data.name });
