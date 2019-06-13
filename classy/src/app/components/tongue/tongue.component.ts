@@ -61,6 +61,8 @@ export class TongueComponent implements OnInit {
   private prevPosition: number;
   private drag: DragRef;
 
+  public isCheckedIn: boolean = false;
+
   public tongueStyle: ITongueStyle = {
     borderRadius: '20px 20px 0px 0px',
     boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.1)',
@@ -266,5 +268,10 @@ export class TongueComponent implements OnInit {
 
   public showRoomDetail(): void {
     this.router.navigateByUrl('/room-detail');
+  }
+
+  public checkedIn() {
+    this.tongueModeOpaque(null);
+    this.isCheckedIn = true;
   }
 }

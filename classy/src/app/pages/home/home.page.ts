@@ -9,7 +9,7 @@ import {TongueComponent} from '../../components/tongue/tongue.component';
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, AfterViewInit {
+export class HomePage implements OnInit {
     private disableScanning = false;
 
    @ViewChild(TongueComponent)
@@ -24,8 +24,7 @@ export class HomePage implements OnInit, AfterViewInit {
     }
 
     readQr(data: string) {
-        console.log(data, 'in HOME');
-        this.tongue.tongueModeOpaque(null);
+        this.tongue.checkedIn();
     }
 
     tongueModeChange(inForeground: boolean) {
@@ -39,10 +38,5 @@ export class HomePage implements OnInit, AfterViewInit {
 
     public switchTheme(): void {
         this.theme.cycleTheme();
-    }
-
-    ngAfterViewInit(): void {
-        // this.tongue = document.getElementById("tongue");
-        console.log(this.tongue, 'tongue after init');
     }
 }
