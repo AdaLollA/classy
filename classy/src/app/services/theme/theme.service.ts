@@ -36,6 +36,7 @@ export class ThemeService {
                     {themeVariable: '--ion-toolbar-background', value: '#f4f5f8'},
                     {themeVariable: '--ion-toolbar-color', value: '#222428'},
                     {themeVariable: '--ion-color-step-600', value: '#646464'},
+                    {themeVariable: '--ion-color-step-850', value: '#4c4c4c'},
 
                     {themeVariable: '--ion-color-primary', value: '#3880ff'},
                     {themeVariable: '--ion-color-primary-rgb', value: '56, 128, 255'},
@@ -63,6 +64,7 @@ export class ThemeService {
                     {themeVariable: '--ion-toolbar-background', value: '#0f1e33'},
                     {themeVariable: '--ion-toolbar-color', value: '#475E7F'},
                     {themeVariable: '--ion-color-step-600', value: '#6d89a9'},
+                    {themeVariable: '--ion-color-step-850', value: '#8a8a8a'},
 
                     {themeVariable: '--ion-color-primary', value: 'linear-gradient(0, #72EDF2 10%, #5151E5 100%)'},
                     {themeVariable: '--ion-color-primary-rgb', value: '34,34,34'},

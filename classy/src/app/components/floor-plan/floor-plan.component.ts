@@ -25,8 +25,8 @@ export class FloorPlanComponent implements OnInit {
   ngOnInit() {
     this.buildingsService.getAllBuildings().subscribe((buildings: IBuilding[]) => {
       this.buildings = buildings;
-      this.selectedBuilding = this.buildings[1];
-      this.selectedFloor = this.selectedBuilding.floors[3];
+      this.selectedBuilding = this.buildings[this.buildingId];
+      this.selectedFloor = this.selectedBuilding.floors[this.floorId];
     });
   }
 

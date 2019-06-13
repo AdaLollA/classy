@@ -1,21 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons>
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{room.id}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button color="primary" (click)="switchTheme()">
-        <ion-icon slot="icon-only" name="moon"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{room.id}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="primary" (click)="switchTheme()">
+                <ion-icon slot="icon-only" name="moon"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-floor-plan [buildingId]="room.building" [floorId]="room.building"></app-floor-plan>
+    <app-floor-plan [buildingId]="room.building" [floorId]="room.building"></app-floor-plan>
 
-  <ion-list>
-
-  </ion-list>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>
+                Room Schedule for Today
+            </ion-label>
+        </ion-list-header>
+        <ion-item text-wrap lines="full" detail="true" (click)="showCourseDetail()">
+            <ion-text slot="start">
+                <ion-label>
+                    <h2>{{course.startTime | date: 'HH:mm'}}</h2>
+                    <h2>{{course.endTime | date: 'HH:mm'}}</h2>
+                </ion-label>
+            </ion-text>
+            <ion-text>
+                <ion-label text-wrap>
+                    <h3><strong>{{course.id}}</strong><br> {{course.label}}</h3>
+                </ion-label>
+            </ion-text>
+        </ion-item>
+    </ion-list>
 </ion-content>
