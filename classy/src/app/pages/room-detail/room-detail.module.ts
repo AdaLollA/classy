@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { RoomDetailPage } from './room-detail.page';
+import { FloorPlanComponentModule } from '../../components/floor-plan/floor-plan.component.module';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FloorPlanComponentModule
   ],
   declarations: [RoomDetailPage]
 })

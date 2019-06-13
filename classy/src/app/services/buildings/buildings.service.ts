@@ -45,10 +45,6 @@ const allBuildings: IBuilding[] = [
       {
         id: '4',
         label: 'Level 4',
-      },
-      {
-        id: '5',
-        label: 'Level 5',
       }
     ]
   },
