@@ -10,7 +10,7 @@ export class QrReaderService {
   constructor() { }
 
   getCurrentCameraImage(): string {
-    return this.currentCanvas.toDataURL("image/png");
+    return this.currentCanvas.toDataURL('image/png;base64');
   }
 
   setCurrentCameraImage(canvas) {

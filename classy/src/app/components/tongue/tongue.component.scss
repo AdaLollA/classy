@@ -14,7 +14,7 @@
 
 .tongue {
   position: absolute;
-  background: white;
+  background: var(--ion-color-light);
   width: 100%;
   height: 100vh;
   align-content: start;
@@ -26,7 +26,7 @@
 }
 
 .handle {
-  background: lightgray;
+  background: var(--ion-color-medium);
   height: 4px;
   width: 50px;
   margin-top: 10px;

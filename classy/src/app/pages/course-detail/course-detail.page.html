@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{course.id}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="primary" (click)="switchTheme()">
+                <ion-icon slot="icon-only" name="moon"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card mode="ios">
+        <img [src]="course.image" class="course__image">
+        <ion-card-header>
+            <ion-card-subtitle>{{course.id}}</ion-card-subtitle>
+            <ion-card-title class="course__title">{{course.label}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <h2><strong>6</strong> of <strong>7</strong> sessions completed</h2>
+            <ion-progress-bar color="secondary" [value]="6/7"></ion-progress-bar>
+            <br>
+            <h1>Description</h1>
+            <ion-text>
+                <h2><strong>Course content</strong></h2>
+                In the recent years we can perceive a trend towards cross-platform mobile development. This strategy has
+                gained particular interest in certain industries, since providing a single service on multiple mobile
+                platforms (and possibly also the web) can cause severe development overhead (and thus cost) when native
+                applications are used for each target platform. <a>more...</a>
+            </ion-text>
+            <ion-button (click)="openElearning()" expand="block" color="primary" class="course__elearning-button">
+                <ion-label>Open in elearning...</ion-label>
+                <ion-icon name="open" slot="end"></ion-icon>
+            </ion-button>
+        </ion-card-content>
+    </ion-card>
+
+<!--    <app-floor-plan [buildingId]="course.room.building" [floorId]="course.room.floor"></app-floor-plan>-->
+</ion-content>

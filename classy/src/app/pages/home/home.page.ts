@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Platform} from '@ionic/angular';
+import {ThemeService} from '../../services/theme/theme.service';
 
 @Component({
     selector: 'app-home',
@@ -7,9 +8,9 @@ import {Platform} from '@ionic/angular';
     styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-    private disableScanning: boolean = false;
+    private disableScanning = false;
 
-    constructor(public platform: Platform) {
+    constructor(public platform: Platform, private readonly theme: ThemeService) {
 
     }
 
@@ -26,9 +27,11 @@ export class HomePage implements OnInit {
     }
 
     shouldShowQRReader(): boolean {
-        if (this.platform.width() > this.platform.height()) {
-            return false;
-        }
-        return true;
+        return this.platform.width() <= this.platform.height();
+
+    }
+
+    public switchTheme(): void {
+        this.theme.cycleTheme();
     }
 }
