@@ -5,6 +5,10 @@ import { QrReaderService } from '../../services/qr-reader/qr-reader.service';
 import { NetworkService } from '../../services/network/network.service';
 import { Router } from '@angular/router';
 
+import { Plugins } from '@capacitor/core';
+
+const { Storage } = Plugins;
+
 export interface ICourse {
   id: string;
   label: string;
@@ -81,6 +85,31 @@ export class TongueComponent implements OnInit {
               private qrReaderService: QrReaderService,
               private networkService: NetworkService,
               private router: Router) {
+    Storage.get({ key: 'loggedIn' }).then(storedValue => {
+      this.loggedIn = storedValue.value !== null;
+
+      if ( this.loggedIn ) {
+        this.getLocalUserData();
+      }
+    });
+
+  }
+
+  private async getLocalUserData() {
+    const campus = await Storage.get({ key: 'campus' });
+    const name = await Storage.get({ key: 'name' });
+    const birthday = await Storage.get({ key: 'birthday' });
+    const nation = await Storage.get({ key: 'nation' });
+    const studentId = await Storage.get({ key: 'studentId' });
+
+    this.userData = {
+      campus: campus.value,
+      name: name.value,
+      birthday: birthday.value,
+      nation: nation.value,
+      studentId: studentId.value
+    };
+    console.log(this.userData);
   }
 
   ngOnInit() {
@@ -252,6 +281,12 @@ export class TongueComponent implements OnInit {
           this.loggedIn = true;
           this.loginLoading = false;
           this.userData = data;
+          Storage.set({ key: 'loggedIn', value: 'true' });
+          Storage.set({ key: 'campus', value: data.campus });
+          Storage.set({ key: 'name', value: data.name });
+          Storage.set({ key: 'birthday', value: data.birthday });
+          Storage.set({ key: 'nation', value: data.nation });
+          Storage.set({ key: 'studentId', value: data.studentId });
         },
         err => {
           this.loggedIn = false;
@@ -266,5 +301,10 @@ export class TongueComponent implements OnInit {
 
   public showRoomDetail(): void {
     this.router.navigateByUrl('/room-detail');
+  }
+
+  public logOutPressed(): void {
+    Storage.remove({ key: 'loggedIn' });
+    this.loggedIn = false;
   }
 }

@@ -11,7 +11,7 @@ const { SplashScreen, StatusBar } = Plugins;
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  constructor(private platform: Platform,) {
+  constructor(private platform: Platform) {
     this.initializeApp();
   }
 

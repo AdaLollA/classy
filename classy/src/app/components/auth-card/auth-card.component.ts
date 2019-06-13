@@ -1,5 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IUserData } from '../tongue/tongue.component';
+
+
+import { Plugins } from '@capacitor/core';
+const { Storage } = Plugins;
 
 @Component({
   selector: 'app-auth-card',
@@ -8,7 +12,10 @@ import { IUserData } from '../tongue/tongue.component';
 })
 export class AuthCardComponent implements OnInit {
 
-  @Input("userdata") userData: IUserData;
+  @Input('userdata') userData: IUserData;
+
+  @Output('loggedOut')
+  logoutEvent =  new EventEmitter();
 
   constructor() { }
 
@@ -16,22 +23,23 @@ export class AuthCardComponent implements OnInit {
 
   logout() {
     console.log('logout');
+    this.logoutEvent.emit();
   }
 
   getName(): string {
-    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.name
+    return (this.userData === null || this.userData === undefined) ? 'unknown' : this.userData.name;
   }
 
   getId(): string {
-    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.studentId
+    return (this.userData === null || this.userData === undefined) ? 'unknown' : this.userData.studentId;
   }
 
   getBirthday(): string {
-    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.birthday
+    return (this.userData === null || this.userData === undefined) ? 'unknown' : this.userData.birthday;
   }
 
   getCampus(): string {
-    return (this.userData == null || this.userData == undefined) ? "unknown" : this.userData.campus
+    return (this.userData === null || this.userData === undefined) ? 'unknown' : this.userData.campus;
   }
 
 }
