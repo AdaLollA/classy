@@ -117,6 +117,10 @@ export class TongueComponent implements OnInit {
   ngOnInit() {
     this.initTop = this.tongue.el.getBoundingClientRect().top;
 
+    this.qrReaderService.getDetectionEvents().subscribe(detected => {
+      this.tongueModeOpaque(this.drag);
+    })
+
     if ( this.platform.is('desktop') ) {
       this.tongueStyle.top = '0';
     }
@@ -283,7 +287,6 @@ export class TongueComponent implements OnInit {
           this.loggedIn = true;
           this.loginLoading = false;
           this.userData = data;
-          this.tongueModeOpaque(this.drag);
           Storage.set({ key: 'loggedIn', value: 'true' });
           Storage.set({ key: 'campus', value: data.campus });
           Storage.set({ key: 'name', value: data.name });

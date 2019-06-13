@@ -80,6 +80,8 @@ export class QrReaderComponent implements OnInit {
                         this.drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, this.outline);
                         this.readQr.emit(code.data);
                         foundQr = true;
+                        //Found qr, move up tongue
+                        this.qrReaderService.qrCodeDetected();
                     } else {
                         // no qr found at the moment
                     }

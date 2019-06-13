@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class QrReaderService {
 
   private currentCanvas = null;
+
+  private detectionEvent = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -15,5 +18,13 @@ export class QrReaderService {
 
   setCurrentCameraImage(canvas) {
     this.currentCanvas = canvas;
+  }
+
+  public qrCodeDetected() {
+    this.detectionEvent.emit(true);
+  }
+
+  public getDetectionEvents(): EventEmitter<boolean> {
+    return this.detectionEvent;
   }
 }
