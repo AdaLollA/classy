@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>room-detail</ion-title>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{room.id}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="switchTheme()">
+        <ion-icon slot="icon-only" name="moon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <app-floor-plan [buildingId]="room.building" [floorId]="room.building"></app-floor-plan>
 
+  <ion-list>
+
+  </ion-list>
 </ion-content>

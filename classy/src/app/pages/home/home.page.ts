@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {ThemeService} from '../../services/theme/theme.service';
+import { disableBindings } from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-home',

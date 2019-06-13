@@ -12,7 +12,7 @@ export class LoginCardComponent implements OnInit, OnChanges {
 
   @Output('onImageLogin') imageLoginEmitter = new EventEmitter<boolean>();
 
-  public progressBarType = "determinate";
+  public progressBarType = 'determinate';
 
   public buttonDisabled = false;
 
@@ -22,18 +22,18 @@ export class LoginCardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const loadingChange: boolean = changes.loading.currentValue;
-    if (loadingChange == true) {
+    if (loadingChange === true) {
       this.buttonDisabled = true;
-      this.progressBarType = "indeterminate";
+      this.progressBarType = 'indeterminate';
     } else {
       this.buttonDisabled = false;
-      this.progressBarType = "determinate";
+      this.progressBarType = 'determinate';
     }
-    console.log("Loading: " + this.loading);
+    console.log('Loading: ' + this.loading);
   }
 
   loginClicked() {
-    console.log("Login clicked")
+    console.log('Login clicked');
     this.imageLoginEmitter.emit(true);
   }
 

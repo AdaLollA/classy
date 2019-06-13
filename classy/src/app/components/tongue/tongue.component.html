@@ -20,7 +20,7 @@
                 </ion-list-header>
 
                 <div class="scrollmenu">
-                    <ion-card class="result-card" *ngFor="let course of visibleCourses">
+                    <ion-card class="result-card" *ngFor="let course of visibleCourses" (click)="showCourseDetail()">
                         <ion-card-content text-wrap>
                             {{ course.label }}
                         </ion-card-content>
@@ -33,7 +33,7 @@
                 </ion-list-header>
 
                 <div class="scrollmenu">
-                    <ion-card class="result-card" *ngFor="let room of visibleRooms">
+                    <ion-card class="result-card" *ngFor="let room of visibleRooms" (click)="showRoomDetail()">
                         <ion-card-content>
                             {{ room.label }}
                         </ion-card-content>
@@ -43,7 +43,7 @@
 
             <div *ngIf="isLoggedIn(); else notLoggedIn">
                 <ion-row class="card-container">
-                    <app-course-card [course]="courses[0]" class="card-container"></app-course-card>
+                    <app-course-card [course]="courses[0]" class="card-container" (click)="showCourseDetail()"></app-course-card>
                     <app-floor-plan class="card-container" buildingId="2" floorId="4"></app-floor-plan>
                     <app-auth-card [userdata]="userData" class="card-container"></app-auth-card>
                 </ion-row>
