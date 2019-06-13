@@ -5,7 +5,7 @@
     <ion-row padding align-items-center class="full-height">
 
         <ion-row class="full-width">
-            <ion-col no-padding size="8" class="scanning-now">Coming up...</ion-col>
+            <ion-col no-padding size="8" class="scanning-now">{{ checkedIn ? checkedInText : comingUpText }}</ion-col>
             <ion-col no-padding size="4" class="time"> {{ course.startTime | date : 'HH:mm' }} </ion-col>
         </ion-row>
 

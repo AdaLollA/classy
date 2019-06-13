@@ -12,6 +12,12 @@ export class CourseCardComponent implements OnInit {
   progress: number = 0.3;
   interval;
 
+  comingUpText = 'Coming up...';
+  checkedInText = 'Checked in!';
+
+  @Input('checked-in')
+  checkedIn: boolean = false;
+
   @Input('course')
   course: ICourse;
 

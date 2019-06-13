@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {ThemeService} from '../../services/theme/theme.service';
 import { disableBindings } from '@angular/core/src/render3';
+import {TongueComponent} from '../../components/tongue/tongue.component';
 
 @Component({
     selector: 'app-home',
@@ -10,6 +11,9 @@ import { disableBindings } from '@angular/core/src/render3';
 })
 export class HomePage implements OnInit {
     private disableScanning = false;
+
+   @ViewChild(TongueComponent)
+    public tongue: TongueComponent;
 
     constructor(public platform: Platform, private readonly theme: ThemeService) {
 
@@ -20,7 +24,7 @@ export class HomePage implements OnInit {
     }
 
     readQr(data: string) {
-        console.log(data, 'in HOME');
+        this.tongue.checkedIn();
     }
 
     tongueModeChange(inForeground: boolean) {
