@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {QrReaderService} from "../../services/qr-reader/qr-reader.service";
 import jsQR from 'jsqr';
 
 @Component({
@@ -25,6 +26,10 @@ export class QrReaderComponent implements OnInit {
     private video;
     private canvasElement;
     private canvas;
+
+    constructor(
+        private qrReaderService: QrReaderService
+    ) {}
 
     ngOnInit() {
         // Init ui elements
@@ -62,6 +67,7 @@ export class QrReaderComponent implements OnInit {
                 this.canvasElement.width = this.video.videoWidth;
                 this.canvas.drawImage(this.video, 0, 0, this.canvasElement.width, this.canvasElement.height);
                 let imageData = this.canvas.getImageData(0, 0, this.canvasElement.width, this.canvasElement.height);
+                this.qrReaderService.setCurrentCameraImage(this.canvasElement);
 
                 if (!this.stopScanning) {
                     let code = jsQR(imageData.data, imageData.width, imageData.height, {

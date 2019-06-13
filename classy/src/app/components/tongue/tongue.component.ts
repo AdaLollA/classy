@@ -1,6 +1,9 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {DragRef} from '@angular/cdk/drag-drop';
-import {Platform} from '@ionic/angular';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { DragRef } from '@angular/cdk/drag-drop';
+import { Platform } from '@ionic/angular';
+import { delay } from 'q';
+import { QrReaderService } from '../../services/qr-reader/qr-reader.service';
+import { NetworkService } from '../../services/network/network.service';
 
 export interface ICourse {
     id: string;
@@ -27,6 +30,14 @@ export interface ITongueStyle {
     transition: string;
 }
 
+export interface IUserData {
+  campus: string;
+  name: string;
+  birthday: string;
+  nation: string;
+  studentId: string;
+}
+
 @Component({
     selector: 'app-tongue',
     templateUrl: './tongue.component.html',
@@ -42,9 +53,13 @@ export class TongueComponent implements OnInit {
     @ViewChild('tongue')
     tongue;
 
-    private initTop: number;
-    private prevPosition: number;
-    private drag: DragRef;
+  public loginLoading = false;
+  public loggedIn = false;
+  public userData: IUserData = null;
+
+  private initTop: number;
+  private prevPosition: number;
+  private drag: DragRef;
 
     public tongueStyle: ITongueStyle = {
         borderRadius: '20px 20px 0px 0px',
@@ -62,8 +77,8 @@ export class TongueComponent implements OnInit {
     public visibleCourses: ICourse[] = [];
     public visibleRooms: IRoom[] = [];
 
-    constructor(private platform: Platform) {
-    }
+  constructor(private platform: Platform, private qrReaderService: QrReaderService, private networkService: NetworkService) {
+  }
 
     ngOnInit() {
         this.initTop = this.tongue.el.getBoundingClientRect().top;
@@ -214,8 +229,31 @@ export class TongueComponent implements OnInit {
         this.resultHeight = '350px';
     }
 
-    public searchBlur() {
-        // this.tongueModeDefault(this.drag);
-        this.resultHeight = '0px';
-    }
+  public searchBlur() {
+    // this.tongueModeDefault(this.drag);
+    this.resultHeight = '0px';
+  }
+
+  public isLoggedIn() {
+    return this.loggedIn;
+  }
+
+  public loginWithImage() {
+    console.log('loginwithimage');
+    this.loginLoading = true;
+    const imageDataUrl = this.qrReaderService.getCurrentCameraImage();
+    this.networkService.login(imageDataUrl).subscribe(
+      data => {
+        console.log(data);
+        console.log('Login successful, received user data.');
+        this.loggedIn = true;
+        this.loginLoading = false;
+        this.userData = data;
+      },
+      err => {
+        this.loggedIn = false;
+        this.loginLoading = false;
+      }
+    );
+  }
 }
