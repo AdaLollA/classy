@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
-import { ICourse, IRoom } from '../../components/tongue/tongue.component';
+import { ICourse } from '../../components/tongue/tongue.component';
 import { Router } from '@angular/router';
 
 @Component({

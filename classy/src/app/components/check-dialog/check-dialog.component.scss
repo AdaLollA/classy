@@ -9,7 +9,7 @@ h1 {
 }
 
 // Define vars we'll be using
-$brand-success: #5cb85c;
+$brand-success: #00ff6f;
 $loader-size: 7em;
 $check-height: $loader-size/2;
 $check-width: $check-height/2;
@@ -86,4 +86,15 @@ $check-color: $brand-success;
   width: 100px;
   border-radius: 20px;
   background: rgba(211, 211, 211, 0.50);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2000px;
+  height: 2000px;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.4);
+  z-index: 900;
 }

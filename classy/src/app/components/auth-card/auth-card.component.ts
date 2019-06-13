@@ -1,10 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IUserData } from '../tongue/tongue.component';
 
-
-import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins;
-
 @Component({
   selector: 'app-auth-card',
   templateUrl: './auth-card.component.html',

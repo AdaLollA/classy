@@ -30,8 +30,8 @@ export class HomePage implements OnInit {
     readQr(data: string) {
         this.checkDialog.check();
         setTimeout(() => {
-            this.tongue.checkedIn()
-        }, 2000)
+            this.tongue.checkedIn();
+        }, 2000);
     }
 
     tongueModeChange(inForeground: boolean) {
