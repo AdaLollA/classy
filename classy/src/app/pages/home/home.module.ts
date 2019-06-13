@@ -15,6 +15,7 @@ import { QrReaderComponent } from '../../components/qr-reader/qr-reader.componen
 import { FloorPlanComponentModule } from '../../components/floor-plan/floor-plan.component.module';
 import { QrPresenterComponent } from 'src/app/components/qr-presenter/qr-presenter.component';
 import { LoginCardComponent } from 'src/app/components/login-card/login-card.component';
+import {CheckDialogComponent} from '../../components/check-dialog/check-dialog.component';
 
 @NgModule({
   imports: [
@@ -31,16 +32,17 @@ import { LoginCardComponent } from 'src/app/components/login-card/login-card.com
     DragDropModule,
     FloorPlanComponentModule
   ],
-  declarations: [
-    HomePage,
-    TongueComponent,
-    CourseCardComponent,
-    ProviderComponent,
-    AuthCardComponent,
-    QrReaderComponent,
-    QrPresenterComponent,
-    LoginCardComponent
-  ]
+    declarations: [
+        HomePage,
+        TongueComponent,
+        CourseCardComponent,
+        ProviderComponent,
+        AuthCardComponent,
+        QrReaderComponent,
+        QrPresenterComponent,
+        LoginCardComponent,
+        CheckDialogComponent
+    ]
 })
 export class HomePageModule {
 }
