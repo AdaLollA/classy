@@ -1,122 +1,175 @@
-# env-node-backend-base
+<!--
+title: 'AWS Nest application example (NodeJS & Typescript)'
+description: 'This example demonstrates how to setup a simple [Nest](https://github.com/nestjs/nest) application.'
+layout: Doc
+framework: v1
+platform: AWS
+language: nodeJS
+authorLink: 'https://github.com/neilime'
+authorName: 'Emilien Escalle'
+authorAvatar: 'https://avatars3.githubusercontent.com/u/314088?s=140&v=4'
+-->
+# Nest application example
 
-This project is a base for developing a backend application that exposes a RESTful API built with **TypeScript**, **express.js** and **[Ts.ed](http://tsed.io/)**.
+This example demonstrates how to setup a [Nest](https://github.com/nestjs/nest) application.
 
-Further, testing is enabled by the usage of **[mocha](https://mochajs.org/)** and **[chai](https://chaijs.com/)**.
+## Use Cases
 
-## Getting started
+- Setup & deploy a [Nest Application starter](https://github.com/nestjs/typescript-starter)
 
-Install dependencies (add `--scripts-prepend-node-path` option to eliminate warnings)
+## Running the app locally
 
-```sh
-npm install --scripts-prepend-node-path
-```
-
-## Running
-
-The project is being run with **[ts-node](https://www.npmjs.com/package/ts-node)**, a TypeScript node.js interpreter via
-
-```sh
+```bash
 npm start
 ```
 
-The development mode can be started with
+Which should result in:
 
-```sh
-npm run start:dev
+```bash
+$ sls offline start
+Serverless: Compiling with Typescript...
+Serverless: Using local tsconfig.json
+Serverless: Typescript compiled.
+Serverless: Watching typescript files...
+Serverless: Starting Offline: dev/us-east-1.
+
+Serverless: Routes for main:
+Serverless: ANY /{proxy*}
+
+Serverless: Offline listening on http://localhost:3000
 ```
 
-This starts ts-node in watch mode and immediately restarts the server when file changes are recognized.
+Then browse http://localhost:3000/hello
 
-The url, where your backend can be reached, will be printed in your console but the following endpoints can be reached
-with the initial configuration:
+The logs should be :
 
-- **<url>/rest** - lists all endpoints
-- **<url>/hello** - prints 'Hello World!' and shows basic usage of controllers and unit tests (template.controller.spec.ts)
-- **<url>/api-docs/swagger.json** - a documentation of all endpoints in **json** format (available when stuff is documented)
-- **<url>/api-docs** - a HTML representation of the endpoint documentation
-
-## Testing
-
-Testing can be done by executing
-
-```sh
-npm test
+```bash
+Serverless: ANY /hello (λ: main)
+[Nest] 7956   - 2018-12-13 10:34:22   [NestFactory] Starting Nest application... +6933ms
+[Nest] 7956   - 2018-12-13 10:34:22   [InstanceLoader] AppModule dependencies initialized +4ms
+[Nest] 7956   - 2018-12-13 10:34:22   [RoutesResolver] AppController {/}: +2ms
+[Nest] 7956   - 2018-12-13 10:34:22   [RouterExplorer] Mapped {/hello, GET} route +1ms
+[Nest] 7956   - 2018-12-13 10:34:22   [NestApplication] Nest application successfully started +1ms
+Serverless: [200] {"statusCode":200,"body":"Hello World!","headers":{"x-powered-by":"Express","content-type":"text/html; charset=utf-8","content-length":"12","etag":"W/\"c-Lve95gjOVATpfV8EL5X4nxwjKHE\"","date":"Thu, 13 Dec 2018 09:34:22 GMT","connection":"keep-alive"},"isBase64Encoded":false}
 ```
 
-This will print the results of your tests in your console and create a coverage folder with a HTML report of your code
-coverage.
+### Skiping cache invalidation
 
-## Configuration
+Skiping cache invalidation is the same behavior as a deployed function
 
-The **server.config.json** file, sitting in your project root, is used for configuration of the express server.
-The default version of this file is the following:
-
-```json
-{
-  "dev": {
-    "http_port": 8090,
-    "https_port": 8443,
-    "private_key_path": "",
-    "ssl_cert_path": "",
-    "passPhrase": ""
-  },
-  "prod": {
-    "http_port": 8090,
-    "https_port": 8443,
-    "private_key_path": "",
-    "ssl_cert_path": "",
-    "passPhrase": ""
-  }
-}
+```bash
+npm start -- --skipCacheInvalidation
 ```
 
-Be sure to adapt this file to your means and provide the necessary information when configuring HTTPS support.
+## Deploy
 
-##Preparing the Server
-```
-chmod 400 ~/.ssh/sshkey.pem
-ssh -i ~/.ssh/sshkey.pem user@server
-sudo apt update
-sudo apt install nodejs npm
-sudo npm install pm2 -g
-sudo apt-get update
-sudo apt-get install software-properties-common
-sudo add-apt-repository universe
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt-get update
-sudo apt-get install certbot
-sudo certbot certonly
-sudo certbot renew --dry-run
-sudo pm2 startup
+In order to deploy the endpoint, simply run:
+
+```bash
+sls deploy
 ```
 
-DEPLOY using npm:  ```npm run deploy```
+The expected result should be similar to:
 
+```bash
+$ sls deploy
+Serverless: Compiling with Typescript...
+Serverless: Using local tsconfig.json
+Serverless: Typescript compiled.
+Serverless: Packaging service...
+Serverless: Excluding development dependencies...
+Serverless: Creating Stack...
+Serverless: Checking Stack create progress...
+.....
+Serverless: Stack create finished...
+Serverless: Uploading CloudFormation file to S3...
+Serverless: Uploading artifacts...
+Serverless: Uploading service .zip file to S3 (32.6 MB)...
+Serverless: Validating template...
+Serverless: Updating Stack...
+Serverless: Checking Stack update progress...
+..............................
+Serverless: Stack update finished...
+Service Information
+service: serverless-nest-example
+stage: dev
+region: us-east-1
+stack: serverless-nest-example-dev
+api keys:
+  None
+endpoints:
+  ANY - https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/{proxy?}
+functions:
+  main: serverless-nest-example-dev-main
+layers:
+  None
 ```
-cd backend
-npm install --only=production
-sudo pm2 kill
-sudo pm2 start
+
+## Usage
+
+Send an HTTP request directly to the endpoint using a tool like curl
+
+```bash
+curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/hello
 ```
 
-## Deployment
+## Tail logs
 
-Deployment to the server is currently done by simply copying everything of relevance to the wanted server.
-Make sure to adjust the contents of the **config** property in **package.json** to fit the server's properties
-(ssh keyfile, username, server url and deployment path).
+```bash
+sls logs --function main --tail
+```
 
-At a later stage, this process should be automated by a deployment file for **[pm2](https://pm2.io/runtime/)**.
+## Scaling
 
-```json
-{
-  ...
-  "config": {
-    "keyfile": ".pem file",
-    "user": "username",
-    "server": "server url",
-    "deployPath": "e.g. ~/backend/"
-  },
-  ...
-}
+By default, AWS Lambda limits the total concurrent executions across all functions within a given region to 100. The default limit is a safety limit that protects you from costs due to potential runaway or recursive functions during initial development and testing. To increase this limit above the default, follow the steps in [To request a limit increase for concurrent executions](http://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html#increase-concurrent-executions-limit).
+
+## Cold start
+
+Cold start may cause latencies for your application
+See : https://serverless.com/blog/keep-your-lambdas-warm/
+
+These behavior can be fixed with the plugin [serverless-plugin-warmup](https://www.npmjs.com/package/serverless-plugin-warmup) 
+
+1. Install the plugin
+
+```bash 
+npm install serverless-plugin-warmup --save-dev
+```
+
+2. Enable the plugin
+
+```yaml
+plugins:
+  - '@hewmen/serverless-plugin-typescript'
+  - serverless-plugin-optimize
+  - serverless-offline
+  - serverless-plugin-warmup
+
+custom:
+  # Enable warmup on all functions (only for production and staging)
+  warmup:      
+      - production
+      - staging
+```
+
+## Benchmark
+
+A basic benchmark script can be used locally, it performs 1000 "GET" requests on "http://localhost:3000/hello"
+
+
+```bash
+# /!\ The app must run locally
+npm start # Or npm start -- --skipCacheInvalidation for better performances
+
+# Run bench
+node bench.js
+```
+
+The expected result should be similar to:
+
+```bash
+$ node bench.js
+1000 "GET" requests to "http://localhost:3000/hello"
+total: 8809.733ms
+Average:  8.794ms
 ```

@@ -1,0 +1,42 @@
+.canvas {
+  height: 100%;
+  width: 1444px;
+  margin-left: -500px;
+  position: absolute;
+}
+
+.blur-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  margin: 0;
+  padding: 0;
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-blur {
+    height: 150px;
+    width: 100%;
+    background: rgba(141, 141, 141, 0.5);
+  }
+
+  .mid-blur-container {
+    height: 300px;
+    width: 100%;
+  }
+
+  .mid-blur {
+    width: 100%;
+    background: rgba(141, 141, 141, 0.5);
+  }
+
+  .bot-blur {
+    height: 400px;
+    width: 100%;
+    background: rgba(141, 141, 141, 0.5);
+  }
+}

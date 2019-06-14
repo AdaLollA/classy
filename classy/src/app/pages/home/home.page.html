@@ -1,0 +1,25 @@
+<ion-content>
+    <!-- todo is smoother when disabling feed entirely (not only stopping scanning) -->
+
+    <div *ngIf="shouldShowQRReader(); else qrpresenter">
+        <app-qr-reader (readQr)="readQr($event)" [stopWhenRead]="true" [outline]="'#00FF00'" [disabled]="disableScanning"
+            [stopScanning]="disableScanning"></app-qr-reader>
+        <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
+    </div>
+
+    <ng-template #qrpresenter>
+        <ion-grid class="split-grid">
+            <ion-row class="split-grid-row">
+                <ion-col size="4">
+                    <app-tongue (inForeground)="tongueModeChange($event)"></app-tongue>
+                </ion-col>
+                <ion-col size="8">
+                    <app-qr-presenter class="presenter"></app-qr-presenter>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-template>
+
+    <app-check-dialog></app-check-dialog>
+
+</ion-content>

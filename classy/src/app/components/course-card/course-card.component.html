@@ -1,0 +1,24 @@
+
+<ion-card class="card" (click)="generateQR()">
+    <ion-progress-bar [value]="progress"></ion-progress-bar>
+
+    <ion-row padding align-items-center class="full-height">
+
+        <ion-row class="full-width">
+            <ion-col no-padding size="8" class="scanning-now">{{ checkedIn ? checkedInText : comingUpText }}</ion-col>
+            <ion-col no-padding size="4" class="time"> {{ course.startTime | date : 'HH:mm' }} </ion-col>
+        </ion-row>
+
+        <ion-row>{{ course.label }}</ion-row>
+
+        <ion-row class="full-width">
+            <ion-col no-padding size="6" class="course-id">{{ course.id }}</ion-col>
+            <ion-col no-padding size="6" class="room-id">
+                <ion-icon name="pin"></ion-icon>
+                {{ course.room.label }}
+            </ion-col>
+        </ion-row>
+
+    </ion-row>
+
+</ion-card>

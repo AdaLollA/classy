@@ -1,76 +1,36 @@
 {
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {
+    "no-unused-expression": true
+  },
   "rules": {
-    "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "indent": [
-      true,
-      "spaces"
-    ],
-    "no-duplicate-variable": true,
-    "no-eval": true,
-    "no-internal-module": true,
-    "no-trailing-whitespace": true,
-    "no-var-keyword": true,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-whitespace"
-    ],
     "quotemark": [
       true,
       "single"
     ],
-    "semicolon": [
-      true,
-      "always",
-      "ignore-bound-class-methods"
+    "member-access": [
+      false
     ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
+    "ordered-imports": [
+      false
     ],
-    "prefer-const": true,
-    "newline-before-return": true,
-    "no-angle-bracket-type-assertion": true,
-    "only-arrow-functions": [
+    "max-line-length": [
       true,
-      "allow-declarations",
-      "allow-named-functions"
+      150
     ],
-    "arrow-return-shorthand": true,
-    "object-literal-shorthand": true,
-    "array-type": [
-      true,
-      "array"
+    "member-ordering": [
+      false
     ],
-    "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      }
+    "interface-name": [
+      false
     ],
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-leading-underscore",
-      "allow-trailing-underscore",
-      "allow-pascal-case"
-    ],
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
-    ]
-  }
+    "arrow-parens": false,
+    "object-literal-sort-keys": false,
+    "trailing-comma": false,
+    "no-console": false
+  },
+  "rulesDirectory": []
 }

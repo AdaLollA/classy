@@ -1,0 +1,100 @@
+// This is just styling for this demo
+body {
+  padding: 5em;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+// Define vars we'll be using
+$brand-success: #00ff6f;
+$loader-size: 7em;
+$check-height: $loader-size/2;
+$check-width: $check-height/2;
+$check-left: ($loader-size/6 + $loader-size/12);
+$check-thickness: 3px;
+$check-color: $brand-success;
+
+.circle-loader {
+  margin-bottom: $loader-size/2;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-left-color: $check-color;
+  animation: loader-spin 1.2s infinite linear;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  width: $loader-size;
+  height: $loader-size;
+}
+
+.load-complete {
+  -webkit-animation: none;
+  animation: none;
+  border-color: $check-color;
+  transition: border 500ms ease-out;
+}
+
+.checkmark {
+  transition: all 0.5s;
+  font-size: 7em;
+  color: $check-color;
+}
+
+@keyframes loader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: $check-width;
+    opacity: 1;
+  }
+  40% {
+    height: $check-height;
+    width: $check-width;
+    opacity: 1;
+  }
+  100% {
+    height: $check-height;
+    width: $check-width;
+    opacity: 1;
+  }
+}
+
+.check-container {
+  height: 100%;
+  width: 100%;
+}
+
+.check-box {
+  z-index: 10;
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+  background: rgba(211, 211, 211, 0.50);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2000px;
+  height: 2000px;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.4);
+  z-index: 900;
+}

@@ -1,0 +1,28 @@
+<ion-card class="auth-card">
+    <ion-row class="red-stripe">
+        <ion-col size="8" class="title-container">
+            <p no-margin class="title">Studentenausweis</p>
+            <p no-margin class="sub-title">International Student Card</p>
+        </ion-col>
+        <ion-col no-padding size="4">
+            <img class="fh-logo" src="../../../assets/icon/fh.png">
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="card-data-area">
+        <ion-col size="3.5" class="person-col">
+            <ion-icon name="person" class="person-icon"></ion-icon>
+        </ion-col>
+        <ion-col size="8.5">
+            <ion-row class="detail-text">{{ getName() }}</ion-row>
+            <ion-row class="detail-text">{{ getId() }}</ion-row>
+            <ion-row class="detail-text">{{ getBirthday() }}</ion-row>
+            <ion-row class="detail-text">{{ getCampus() }}</ion-row>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <div class="signature-field"></div>
+        <ion-icon name="exit" class="logout-icon" (click)="logout()"></ion-icon>
+    </ion-row>
+</ion-card>
